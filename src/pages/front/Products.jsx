@@ -51,14 +51,14 @@ function Products() {
             bottom: "0",
             left: "0",
             right: "0",
-            backgroundImage: "url('/img/bg-product.png')",
+            backgroundImage:` url('${import.meta.env.BASE_URL}/img/bg-product.png')`,
             backgroundPosition: "center center",
             opacity: "0.4",
           }}
         ></div>
 
         <img
-          src="/img/logo-product.png"
+          src={`${import.meta.env.BASE_URL}/img/logo-product.png`}
           data-aos="fade-up"
           className="position-absolute "
           alt="logo"

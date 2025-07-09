@@ -35,8 +35,8 @@ function Success() {
           right: "0",
           // backgroundImage: "url('/img/success.png')",
           backgroundPosition: "center center",
-          backgroundSize: "contain cover",
-         
+          backgroundSize: "contain",
+          backgroundSize: "cover",
         }}
       ></div>
     </div>

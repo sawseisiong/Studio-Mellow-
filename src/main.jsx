@@ -9,7 +9,7 @@ import "./stylesheets/all.scss"
 
 createRoot(document.getElementById("root")).render(
 
-    < BrowserRouter >
+    < BrowserRouter basename="/Studio-Mellow-/">
     <App />
     </ BrowserRouter >
 
