@@ -1,0 +1,51 @@
+.object-cover{
+    object-fit: cover;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+.hover-float {
+    transition: transform .3s ease, box-shadow .3s ease;  
+  }
+  .hover-float:hover {
+    transform: translateY(-6px);       
+    
+  }
+
+
+
+//手機版
+  @media (max-width: 767px) {
+    .img-media{
+      height: 350px;
+      width: 350px;
+    }
+
+    .logo-desktop{
+      height: 150px;
+    }
+    .bg-success {
+      background-image: url('/img/success-phone.png');
+      max-width: 100%;
+    }
+  }
+
+//電腦版
+  @media (min-width: 768px) {
+    .img-media{
+      height: 500px;
+      width: 500px;
+    }
+    .logo-desktop{
+      height: 250px;
+    }
+    .bg-success {
+      background-image: url('/img/success.png');
+      
+      
+    }
+  }
+

@@ -1,0 +1,176 @@
+import { useState } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Dashboard from "./pages/admin/Dashboard";
+import ProductModal from "./components/ProductModal";
+import ProductList from "./pages/admin/ProductList";
+import CouponList from "./pages/admin/CouponList";
+import CouponModal from "./components/CouponModal";
+import OrdersList from "./pages/admin/OrdersList";
+import OrderModal from "./components/OrderModal";
+import FrontLayout from "./pages/front/FrontLayout";
+import Home from "./pages/front/Home";
+import Products from "./pages/front/Products";
+import ProductDetail from "./pages/front/ProductDetail";
+import Cart from "./pages/front/Cart";
+import Checkout from "./pages/front/Checkout";
+import Success from "./pages/front/Success";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+function App() {
+  const [dbPage, setDbPage] = useState(1); //後台的頁碼（商品頁）
+  const [cpPage, setCpPage] = useState(1); //優惠卷頁碼
+  const [odPage, setOdPage] = useState(1); //商品訂購頁碼
+  const [message, setMessage] = useState({ success: false, message: "" }); //跨元件訊息
+
+  AOS.init(); //初始化 AOS 套件
+
+  return (
+    <>
+      <Routes>
+        <Route
+          element={<FrontLayout message={message} setMessage={setMessage} />}
+        >
+          <Route index element={<Home />}></Route>
+          <Route path="products">
+            <Route index element={<Products />} />
+            <Route path=":id" element={<ProductDetail />} />
+          </Route>
+          <Route path="cart" element={<Cart />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="success" element={<Success />} />
+        </Route>
+        <Route path="success" element={<Success />} />
+        <Route path="/login" element={<Login />}></Route>
+        <Route
+          path="/dashboard"
+          element={
+            <Dashboard
+              message={message}
+              setMessage={setMessage}
+              dbPage={dbPage}
+              setDbPage={setDbPage}
+              cpPage={cpPage}
+              setCpPage={setCpPage}
+              odPage={odPage}
+              setOdPage={setOdPage}
+            />
+          }
+        >
+          <Route index element={<Navigate to="productlist" replace />} />
+          <Route
+            path="productlist"
+            element={
+              <ProductList
+                message={message}
+                setMessage={setMessage}
+                dbPage={dbPage}
+                setDbPage={setDbPage}
+              />
+            }
+          >
+            <Route
+              path="productmodal"
+              element={
+                <ProductModal
+                  message={message}
+                  setMessage={setMessage}
+                  dbPage={dbPage}
+                  setDbPage={setDbPage}
+                  mode="create"
+                />
+              }
+            />
+            <Route
+              path="productmodal/:id"
+              element={
+                <ProductModal
+                  message={message}
+                  setMessage={setMessage}
+                  dbPage={dbPage}
+                  setDbPage={setDbPage}
+                  mode="edit"
+                />
+              }
+            />
+          </Route>
+          <Route
+            path="couponlist"
+            element={
+              <CouponList
+                message={message}
+                setMessage={setMessage}
+                cpPage={cpPage}
+                setCpPage={setCpPage}
+              />
+            }
+          >
+            <Route
+              path="couponmodal"
+              element={
+                <CouponModal
+                  message={message}
+                  setMessage={setMessage}
+                  cpPage={cpPage}
+                  setCpPage={setCpPage}
+                  mode="create"
+                />
+              }
+            />
+            <Route
+              path="couponmodal/:id"
+              element={
+                <CouponModal
+                  message={message}
+                  setMessage={setMessage}
+                  cpPage={cpPage}
+                  setCpPage={setCpPage}
+                  mode="edit"
+                />
+              }
+            />
+          </Route>
+          <Route
+            path="orderslist"
+            element={
+              <OrdersList
+                message={message}
+                setMessage={setMessage}
+                cpPage={odPage}
+                setCpPage={setOdPage}
+              />
+            }
+          >
+            <Route
+              path="ordermodal"
+              element={
+                <OrderModal
+                  message={message}
+                  setMessage={setMessage}
+                  cpPage={odPage}
+                  setCpPage={setOdPage}
+                  mode="create"
+                />
+              }
+            />
+            <Route
+              path="ordermodal/:id"
+              element={
+                <OrderModal
+                  message={message}
+                  setMessage={setMessage}
+                  cpPage={odPage}
+                  setCpPage={setOdPage}
+                  mode="edit"
+                />
+              }
+            />
+          </Route>
+        </Route>
+      </Routes>
+    </>
+  );
+}
+
+export default App;
