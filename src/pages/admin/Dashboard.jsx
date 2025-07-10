@@ -121,6 +121,8 @@ function Dashboard({
               setDbPage,
               odPage,
               setOdPage,
+              message, 
+              setMessage
               
             }}
           />

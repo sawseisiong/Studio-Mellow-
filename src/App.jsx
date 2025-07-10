@@ -19,9 +19,9 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 function App() {
-  const [dbPage, setDbPage] = useState(1); //後台的頁碼（商品頁）
-  const [cpPage, setCpPage] = useState(1); //優惠卷頁碼
-  const [odPage, setOdPage] = useState(1); //商品訂購頁碼
+  const [dbPage, setDbPage] = useState(1); //後台｜商品頁碼
+  const [cpPage, setCpPage] = useState(1); //後台｜優惠卷頁碼
+  const [odPage, setOdPage] = useState(1); //後台｜商品訂購頁碼
   const [message, setMessage] = useState({ success: false, message: "" }); //跨元件訊息
 
   AOS.init(); //初始化 AOS 套件
@@ -45,6 +45,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route
           path="/dashboard"
+          // 讓 Dashboard 把各頁碼和跨元件訊息傳到子 Route
           element={
             <Dashboard
               message={message}
@@ -59,113 +60,26 @@ function App() {
           }
         >
           <Route index element={<Navigate to="productlist" replace />} />
-          <Route
-            path="productlist"
-            element={
-              <ProductList
-                message={message}
-                setMessage={setMessage}
-                dbPage={dbPage}
-                setDbPage={setDbPage}
-              />
-            }
-          >
+          <Route path="productlist" element={<ProductList />}>
             <Route
               path="productmodal"
-              element={
-                <ProductModal
-                  message={message}
-                  setMessage={setMessage}
-                  dbPage={dbPage}
-                  setDbPage={setDbPage}
-                  mode="create"
-                />
-              }
+              element={<ProductModal mode="create" />}
             />
             <Route
               path="productmodal/:id"
-              element={
-                <ProductModal
-                  message={message}
-                  setMessage={setMessage}
-                  dbPage={dbPage}
-                  setDbPage={setDbPage}
-                  mode="edit"
-                />
-              }
+              element={<ProductModal mode="edit" />}
             />
           </Route>
-          <Route
-            path="couponlist"
-            element={
-              <CouponList
-                message={message}
-                setMessage={setMessage}
-                cpPage={cpPage}
-                setCpPage={setCpPage}
-              />
-            }
-          >
-            <Route
-              path="couponmodal"
-              element={
-                <CouponModal
-                  message={message}
-                  setMessage={setMessage}
-                  cpPage={cpPage}
-                  setCpPage={setCpPage}
-                  mode="create"
-                />
-              }
-            />
+          <Route path="couponlist" element={<CouponList />}>
+            <Route path="couponmodal" element={<CouponModal mode="create" />} />
             <Route
               path="couponmodal/:id"
-              element={
-                <CouponModal
-                  message={message}
-                  setMessage={setMessage}
-                  cpPage={cpPage}
-                  setCpPage={setCpPage}
-                  mode="edit"
-                />
-              }
+              element={<CouponModal mode="edit" />}
             />
           </Route>
-          <Route
-            path="orderslist"
-            element={
-              <OrdersList
-                message={message}
-                setMessage={setMessage}
-                cpPage={odPage}
-                setCpPage={setOdPage}
-              />
-            }
-          >
-            <Route
-              path="ordermodal"
-              element={
-                <OrderModal
-                  message={message}
-                  setMessage={setMessage}
-                  cpPage={odPage}
-                  setCpPage={setOdPage}
-                  mode="create"
-                />
-              }
-            />
-            <Route
-              path="ordermodal/:id"
-              element={
-                <OrderModal
-                  message={message}
-                  setMessage={setMessage}
-                  cpPage={odPage}
-                  setCpPage={setOdPage}
-                  mode="edit"
-                />
-              }
-            />
+          <Route path="orderslist" element={<OrdersList />}>
+            <Route path="ordermodal" element={<OrderModal mode="create" />} />
+            <Route path="ordermodal/:id" element={<OrderModal mode="edit" />} />
           </Route>
         </Route>
       </Routes>

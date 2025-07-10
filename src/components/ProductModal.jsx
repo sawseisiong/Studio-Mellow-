@@ -1,14 +1,15 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation  ,useOutletContext} from "react-router-dom";
 import { useEffect, useState } from "react";
 
-function ProductModal({ mode, dbPage, setDbPage, message, setMessage }) {
+function ProductModal({ mode }) {
   const [uploadImage, setUploadImage] = useState([]); //上傳圖片後出現小圖示預覽
   const { state } = useLocation(); 
   const [remoteImages, setRemoteImages] = useState( //上傳圖片到後端的 State
     state?.product?.imagesUrl || []
   );
+  const { dbPage, setDbPage,message, setMessage } = useOutletContext();
 
   //產品類別分類
   const categories = [

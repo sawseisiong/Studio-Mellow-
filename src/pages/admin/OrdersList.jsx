@@ -1,9 +1,10 @@
 import { Link, useOutletContext, Outlet } from "react-router-dom";
 import useOrder from "./hook/useOrder";
 
-function OrdersList({ message, setMessage }) {
+function OrdersList() {
+  const { odPage,message, setMessage } = useOutletContext();
   const { orderData, pageInfo, fetchOrder } = useOrder({ message, setMessage });
-  const { odPage } = useOutletContext();
+
 
   return (
     <div className="p-3">

@@ -3,8 +3,8 @@ import { use, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 
-function OrderModal({ mode, message, setMessage }) {
-  const { fetchOrder } = useOutletContext();
+function OrderModal({ mode }) {
+  const { fetchOrder ,message, setMessage} = useOutletContext();
   const [isPaid, setPaid] = useState(undefined);
   const navigate = useNavigate();
   const { state } = useLocation();

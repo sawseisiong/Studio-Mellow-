@@ -1,51 +1,53 @@
-.object-cover{
-    object-fit: cover;
+//設定圖片保持比例的 Class
+.object-cover {
+  object-fit: cover;
 }
 
-a{
-    color: black;
-    text-decoration: none;
+//所有 a 標籤一律改成黑色
+a {
+  color: black;
+  text-decoration: none;
 }
 
+//當滑鼠移動到的時候，出現浮動效果
 .hover-float {
-    transition: transform .3s ease, box-shadow .3s ease;  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-float:hover {
+  transform: translateY(-6px);
+}
+
+//手機版 ｜ 767像素以下
+@media (max-width: 767px) {
+  //圖片大小
+  .img-media {
+    height: 350px;
+    width: 350px;
   }
-  .hover-float:hover {
-    transform: translateY(-6px);       
-    
+  //logo 大小
+  .logo-desktop {
+    height: 150px;
   }
-
-
-
-//手機版
-  @media (max-width: 767px) {
-    .img-media{
-      height: 350px;
-      width: 350px;
-    }
-
-    .logo-desktop{
-      height: 150px;
-    }
-    .bg-success {
-      background-image:  url('/img/success-phone.png');
-      max-width: 100%;
-    }
+  //完成結帳畫面直版背景圖
+  .bg-success {
+    background-image: url("/img/success-phone.png");
+    max-width: 100%;
   }
+}
 
-//電腦版
-  @media (min-width: 768px) {
-    .img-media{
-      height: 500px;
-      width: 500px;
-    }
-    .logo-desktop{
-      height: 250px;
-    }
-    .bg-success {
-      background-image:  url('/img/success.png');
-      
-      
-    }
+//電腦版 ｜ 768像素以上
+@media (min-width: 768px) {
+  //圖片大小
+  .img-media {
+    height: 500px;
+    width: 500px;
   }
-
+  //logo 大小
+  .logo-desktop {
+    height: 250px;
+  }
+  //完成結帳畫面橫版背景圖
+  .bg-success {
+    background-image: url("/img/success.png");
+  }
+}

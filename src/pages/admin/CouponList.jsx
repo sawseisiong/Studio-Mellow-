@@ -1,14 +1,15 @@
 import { Link ,useOutletContext ,Outlet} from "react-router-dom";
 import useCoupon from "./hook/useCoupon";
 
-function CouponList({ message, setMessage }){
+function CouponList(){
+  const { cpPage, setCpPage,message, setMessage} = useOutletContext()
   const {couponsData,deleteCoupon,pageInfo,fetchCoupon} =useCoupon({ message, setMessage})
-  const { cpPage, setCpPage} = useOutletContext()
+  
   
     return( 
       
     <div className="p-3">
-      <Outlet context={{cpPage, setCpPage,fetchCoupon}}/>
+      <Outlet context={{cpPage, setCpPage,fetchCoupon,message, setMessage}}/>
             <h3>優惠卷列表</h3>
             <hr />
             <div className="text-end">

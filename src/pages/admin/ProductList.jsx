@@ -1,8 +1,8 @@
 import { Link, useOutletContext, Outlet, useLocation } from "react-router-dom";
 import useProduct from "./hook/useProduct";
 
-function ProductList({ message, setMessage }) {
-  const { dbPage, setDbPage } = useOutletContext();
+function ProductList() {
+  const { dbPage, setDbPage, message, setMessage } = useOutletContext();
 
   const { fetchProducts, pageInfo, productsData, deleteProduct } = useProduct({
     message,
@@ -11,7 +11,7 @@ function ProductList({ message, setMessage }) {
 
   return (
     <div className="p-3">
-      <Outlet context={{ dbPage, setDbPage }} />
+      <Outlet context={{ dbPage, setDbPage, message, setMessage }} />
       <h3>產品列表</h3>
       <hr />
       <div className="text-end">
@@ -109,7 +109,7 @@ function ProductList({ message, setMessage }) {
           </li>
         </ul>
       </nav>
-      <Outlet />
+ 
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 
-function CouponModal({ mode, setMessage }) {
+function CouponModal({ mode }) {
   const {
     register,
     handleSubmit,
@@ -20,7 +20,7 @@ function CouponModal({ mode, setMessage }) {
     },
   });
 
-  const { cpPage, setCpPage, fetchCoupon } = useOutletContext();
+  const { cpPage, setCpPage, fetchCoupon,message, setMessage } = useOutletContext();
 
   const navigate = useNavigate();
   const { state } = useLocation();
