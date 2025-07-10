@@ -2,7 +2,7 @@ import { Link, useOutletContext, Outlet } from "react-router-dom";
 import useOrder from "./hook/useOrder";
 
 function OrdersList() {
-  const { odPage,message, setMessage } = useOutletContext();
+  const { odPage,message, setMessage } = useOutletContext();//傳入頁碼和跨元件訊息
   const { orderData, pageInfo, fetchOrder } = useOrder({ message, setMessage });
 
 

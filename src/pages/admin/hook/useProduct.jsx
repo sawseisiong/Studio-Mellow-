@@ -1,14 +1,14 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect} from "react";
 import { useLocation, useOutletContext } from "react-router-dom";
 import axios from "axios";
 
 export default function useProduct({ setMessage }) {
-  const [productsData, setProductsData] = useState([]);
+  const [productsData, setProductsData] = useState([]);//商品資料
   const location = useLocation();
-  const [pageInfo, setPageInfo] = useState({ total_pages: 1 });
-  const { dbPage, setDbPage } = useOutletContext();
+  const [pageInfo, setPageInfo] = useState({ total_pages: 1 });//總頁碼
+  const { dbPage, setDbPage } = useOutletContext();//當前頁碼
 
-  //刪除圖片  刪除後抓「同一頁」；若這頁沒資料就退回上一頁
+  //刪除圖片  刪除後回到「同一頁」
   const deleteProduct = async (id) => {
     try {
       const res = await axios.delete(
@@ -33,15 +33,16 @@ export default function useProduct({ setMessage }) {
           : { success: msg.success, message: msg.message }
       );
     }
-
+    
+    //刪完最後一筆資料後，如果目前這一頁已經變成空頁，就自動回到上一頁
     if (pageInfo.total_pages === 1) {
       fetchProducts(dbPage - 1);
     }
   };
 
   //render 出所有產品
-  const fetchProducts = useCallback(
-    async (p = 1) => {
+  const fetchProducts =async (p = 1)=>{
+
       if (p <= 0) {
         p = 1;
       }
@@ -54,22 +55,19 @@ export default function useProduct({ setMessage }) {
       setProductsData(Object.values(allProduct));
       setPageInfo(res.data.pagination);
       setDbPage(p);
-    },
-    [dbPage]
-  );
+    }
 
-  //結束 form 後 render 出產品
+  //結束 form 後 render 出產品,夾帶 token 重載不登出
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = token;
     fetchProducts(dbPage);
-  }, [fetchProducts, location]);
+  }, [fetchProducts, location,dbPage]);
 
   return {
     deleteProduct,
     productsData,
     pageInfo,
-
     setPageInfo,
     fetchProducts,
   };

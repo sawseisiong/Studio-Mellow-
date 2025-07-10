@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-
 import { Link, useLocation } from "react-router-dom";
 import useFrontProducts from "./hook/useFrontProducts";
 
@@ -13,13 +12,14 @@ function Products() {
     setActive,
     fetchCategory,
     fetchProducts,
-  } = useFrontProducts();
+  } = useFrontProducts();//傳入 product 的 hook
 
-  //從Home頁面點擊類別商品
+  //從 Home 頁面點擊類別商品後，傳入 state
   const { state } = useLocation();
-  const page = state?.page;
-  const category = state?.category;
+  const page = state?.page; //分類頁碼
+  const category = state?.category; //該分類
 
+  //一旦 state 更新，為 fetchCategory 傳入頁碼和分類
   useEffect(() => {
     if (category) {
       fetchCategory(page, category);
@@ -28,12 +28,12 @@ function Products() {
     }
   }, [state]);
 
-  //點擊下排商品後，緩慢移動到頂部
+  //點擊下排商品頁碼後，緩慢移動到頂部
   useEffect(() => {
     window.scrollTo({ top: 400, behavior: "smooth" });
   }, [fetchProducts]);
 
-  //切換頁面，緩慢移動到頂部
+  //切換頁面時，緩慢移動到頂部
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location]);
@@ -297,12 +297,12 @@ function Products() {
                           style={{ height: 400}}
                           alt="產品圖片"
                         />
-                        <a href="#" className="text-dark">
+                       
                           <i
                             className="far fa-heart position-absolute"
                             style={{ right: "16px", top: "16px" }}
                           ></i>
-                        </a>
+                       
                         <div className="card-body p-0">
                           <h4 className="mb-0 mt-3">{product.title}</h4>
                           <p className="card-text mb-0">
@@ -320,7 +320,7 @@ function Products() {
               <ul className="pagination">
                 <li className={`page-item ${pdPage === 1 ? "disabled" : ""}`}>
                   <Link
-                    to={`?page=${pdPage - 1}`}
+                    to={`?page=${pdPage - 1}`}//上一頁
                     className="page-link"
                     href="/"
                     aria-label="Previous"
@@ -336,7 +336,7 @@ function Products() {
                   </Link>
                 </li>
 
-                {[...Array(pageInfo)].map((_, i) => (
+                {[...Array(pageInfo)].map((_, i) => ( //總頁碼數
                   <li className="page-item" key={`${i}_page`}>
                     <Link
                       to={`?page=${i + 1}`}
@@ -362,8 +362,8 @@ function Products() {
                     pdPage === pageInfo.total_pages ? "disabled" : ""
                   }`}
                 >
-                  <Link
-                    to={`?page=${pdPage + 1}`}
+                  <Link 
+                    to={`?page=${pdPage + 1}`} //下一頁
                     className="page-link"
                     href="/"
                     aria-label="Next"

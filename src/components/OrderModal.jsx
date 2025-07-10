@@ -4,19 +4,18 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 
 function OrderModal({ mode }) {
-  const { fetchOrder ,message, setMessage} = useOutletContext();
-  const [isPaid, setPaid] = useState(undefined);
+  const { fetchOrder } = useOutletContext();
+  const [isPaid, setPaid] = useState(undefined);//is_paid 打勾的訊息
   const navigate = useNavigate();
   const { state } = useLocation();
   const order = state?.order || {};
-  const [status, setStatus] = useState(0);
+  const [status, setStatus] = useState(0);//運送進度
   const {
     handleSubmit,
-
     reset,
   } = useForm({});
 
-  console.log("order11", order);
+
 
   //點擊 form 外圍，關閉表單
   const handleOverlayClick = (e) => {
@@ -36,6 +35,7 @@ function OrderModal({ mode }) {
     }
   }, [mode]);
 
+  //送出表單
   const onSubmit = async (data) => {
     const payload = {
       ...data,
@@ -51,9 +51,7 @@ function OrderModal({ mode }) {
         { data: payload }
       );
       await fetchOrder();
-      console.log("res2121", res);
-      console.log("isPaid", isPaid);
-      navigate(-1);
+      navigate(-1);//關閉表單
     } catch (err) {
       console.log(err);
     }
@@ -70,7 +68,6 @@ function OrderModal({ mode }) {
   useEffect(() => {
     if (order.status !== undefined) {
       setStatus(order.status);
-      console.log("order.status", order.status);
     }
   }, [status]);
 

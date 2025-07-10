@@ -13,28 +13,28 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import "../../stylesheets/all.scss";
+
 
 function ProductDetail() {
-  const [productsData, setProductsData] = useState({});
-  const [allProductsData, setAllProductsData] = useState([]);
-  const [cartQuantity, setCartQuantity] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const { id } = useParams();
+  const [productsData, setProductsData] = useState({});//產品資料
+  const [allProductsData, setAllProductsData] = useState([]);//底下產品輪播圖 資料列
+  const [cartQuantity, setCartQuantity] = useState(1);//加入購物車數量 
+  const [isLoading, setIsLoading] = useState(false);//加入購物車 Loading 
+  const { id } = useParams();//從產品頁傳入的產品 id
   const swiperRef = useRef(null);
   Swiper.use([Autoplay, Navigation]);
-  const { getCart , message, setMessage } = useOutletContext();
+  const { getCart , message, setMessage } = useOutletContext();//傳入 更新購物車函式｜訊息通知
   const navigation = useNavigate();
 
   //加入購物車
   const addToCart = async () => {
     const data = {
       data: {
-        product_id: id,
-        qty: cartQuantity,
+        product_id: id,//產品 id
+        qty: cartQuantity,//數量
       },
     };
-    setIsLoading(true);
+    setIsLoading(true);//設置 Loading 時間
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/v2/api/${
@@ -42,35 +42,32 @@ function ProductDetail() {
         }/cart`,
         data
       );
-      console.log("res", res);
-      setIsLoading(false);
-      const msg = res.data; // 傳入新增購物車商品成功訊息
+      setIsLoading(false);//解除 Loading 時間
+      const msg = res.data; // 傳入新增購物車商品成功 訊息
       setMessage((prev) =>
         prev.success === msg.success && prev.message === msg.message
           ? prev
           : { success: msg.success, message: msg.message }
       );
-      getCart();
+      getCart();//更新購物車資料
     } catch (err) {
       console.log(err);
-      setIsLoading(false);
+      setIsLoading(false);//恢復 Loading 初始設置
     }
   };
 
-  //當前頁的產品
+  //取出當前頁的產品｜資訊｜圖片
   const fetchProducts = async (id) => {
     const res = await axios.get(
       `${import.meta.env.VITE_API_URL}/v2/api/${
         import.meta.env.VITE_API_PATH
       }/product/${id}`
     );
-
     const product = res?.data?.product ?? {};
-
     setProductsData(product);
-    console.log("productsData", productsData);
   };
 
+  //網頁 id 改變，觸發render
   useEffect(() => {
     fetchProducts(id);
   }, [id]);
@@ -82,11 +79,8 @@ function ProductDetail() {
         import.meta.env.VITE_API_PATH
       }/products/all`
     );
-
     const allProduct = res?.data?.products ?? {};
-
     setAllProductsData(allProduct);
-    console.log("allProduct", allProduct);
   };
 
   useEffect(() => {
@@ -118,12 +112,12 @@ function ProductDetail() {
     return () => mySwiper.destroy();
   }, []);
 
-  //存id，讓畫面刷新後，還能導到detail頁面
+  //存id，讓畫面刷新後，依然能保留 detail 頁商品資訊
   useEffect(() => {
     localStorage.setItem("lastProductId", id);
   }, [id]);
 
-  //點擊下排商品後，緩慢移動到頂部
+  //點擊下排商品後，緩慢回到頂部
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [id]);
@@ -264,7 +258,7 @@ function ProductDetail() {
         >
           <div className="swiper-wrapper gap-4">
             {allProductsData
-              .filter((p) => p.id !== id)
+              .filter((p) => p.id !== id)//排除當前頁的產品出現在下排輪播
               .map((product) => {
                 return (
                   <div

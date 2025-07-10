@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import { useNavigate,useOutletContext } from "react-router-dom";
 
 function Checkout() {
-  const [orderList, setOrderList] = useState([]);
-  const { setCartData } = useOutletContext();
+  const [orderList, setOrderList] = useState([]);//訂單資料
+  const { setCartData } = useOutletContext();//設置購物車資料
 
   const {
     register,
@@ -35,28 +35,24 @@ function Checkout() {
         }/order`,
         data
       );
-      await setCartData({});
-      console.log("scss", res);
-      // await clearCart()
-      navigate("/success", { replace: true });
+      await setCartData({});//完成結帳後清空購物車資料
+      navigate("/success", { replace: true });//導到結帳完成頁面
     } catch (err) {
       console.log(err);
     }
   };
 
-  //清空購物車
-  const clearCart = async () => {
-    try {
-      const res = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/v2/api/${
-          import.meta.env.VITE_API_PATH
-        }/carts`
-      );
-      console.log("delete", res);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // //清空購物車
+  // const clearCart = async () => {
+  //   try {
+  //     const res = await axios.delete(
+  //       `${import.meta.env.VITE_API_URL}/v2/api/${
+  //         import.meta.env.VITE_API_PATH
+  //       }/carts`
+  //     );
+  //   } catch (err) {
+  //   }
+  // };
 
   //顯示訂購產品數
   const orderItems = async (item) => {
@@ -72,6 +68,7 @@ function Checkout() {
       console.log(err);
     }
   };
+
   useEffect(() => {
     orderItems();
   }, []);
@@ -98,7 +95,7 @@ function Checkout() {
                     style={{
                       width: "48px",
                       height: "48px",
-                      objectFit: "cover",
+                      objectFit: "cover",//保持比例，填滿容器
                     }}
                   />
                   <div className="w-100">

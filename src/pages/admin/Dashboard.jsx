@@ -16,6 +16,7 @@ function Dashboard({
   const navigate = useNavigate();
   
 
+  //如果無夾帶 token 則返回 login 頁
   useEffect(() => {
     const token = localStorage.getItem("token");
     if(!token){
@@ -24,18 +25,19 @@ function Dashboard({
     }
     (async () => {
       try {
-        await axios.post(`${import.meta.env.VITE_API_URL}/v2/api/user/check`);
+        await axios.post(`${import.meta.env.VITE_API_URL}/v2/api/user/check`);//檢查 token 是否正確
       } catch (err) {
-        if (!err.response.data.success) {
+        if (!err.response.data.success) {//token 不正確則返回 login 頁
           navigate("/login", { replace: true });
           console.log(err);
-        console.log("err.response.data.success", err.response.data.success);
+        
         }
         
       }
     })()
   }, []);
 
+  //登出
   const logOut = async () => {
     console.log("logOut");
     localStorage.removeItem("token");

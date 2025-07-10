@@ -3,7 +3,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { useEffect, useState } from "react";
 
 function Navbar({ cardData }) {
-  //抓到最後一次商品到id，並在點擊detail分頁的時候，到該產品分頁
+  //抓到最後一次商品到id，並在點擊 detail 分頁的時候，到該產品分頁
   const location = useLocation();
   const [lastProductId, setLastProductId] = useState(() =>
     localStorage.getItem("lastProductId")

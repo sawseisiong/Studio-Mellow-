@@ -2,7 +2,7 @@ import { Link ,useOutletContext ,Outlet} from "react-router-dom";
 import useCoupon from "./hook/useCoupon";
 
 function CouponList(){
-  const { cpPage, setCpPage,message, setMessage} = useOutletContext()
+  const { cpPage, setCpPage,message, setMessage} = useOutletContext()//傳入頁碼和跨元件訊息
   const {couponsData,deleteCoupon,pageInfo,fetchCoupon} =useCoupon({ message, setMessage})
   
   

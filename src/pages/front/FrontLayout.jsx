@@ -4,20 +4,19 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function FrontLayout({message, setMessage }) {
-  const [cartData, setCartData] = useState({});
+  const [cartData, setCartData] = useState({});//購物車圖示｜加入購物車數｜購物車資訊
   const location = useLocation()
 
-  const hideFooter = location.pathname == "/success"
+  const hideFooter = location.pathname == "/success"//如果 location 在 success，就隱藏 footer
 
+  //取得購物車資料
   const getCart = async () => {
     const res = await axios.get(
       `${import.meta.env.VITE_API_URL}/v2/api/${
         import.meta.env.VITE_API_PATH
       }/cart`
     );
-    console.log("res.data.data", res.data.data);
     setCartData(res.data.data);
-    console.log("cardData", cartData);
   };
 
   useEffect(() => {

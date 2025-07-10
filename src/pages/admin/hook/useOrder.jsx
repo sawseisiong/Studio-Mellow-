@@ -1,14 +1,13 @@
-import { useState, useEffect, useCallback } from "react";
-import { useLocation, useOutletContext } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 
 export default function useCoupon({ setMessage }) {
-  const [orderData, setOrderData] = useState([]);
-  const location = useLocation();
-  const [pageInfo, setPageInfo] = useState({ total_pages: 1 });
-  const { odPage, setOdPage } = useOutletContext();
+  const [orderData, setOrderData] = useState([]);//訂單資料
+  const [pageInfo, setPageInfo] = useState({ total_pages: 1 });//訂單總頁碼
+  const { odPage, setOdPage } = useOutletContext();//當前頁碼
 
-  //刪除圖片  刪除後抓「同一頁」；若這頁沒資料就退回上一頁
+  //刪除圖片  刪除後抓「同一頁」
   const deleteOrder = async (id) => {
     try {
       const res = await axios.delete(
@@ -38,33 +37,27 @@ export default function useCoupon({ setMessage }) {
   };
 
   //render 出所有產品
-  const fetchOrder = useCallback(
-    async (p = 1) => {
+  const fetchOrder =async (p = 1) => {
       p = Math.max(1, p);
       const res = await axios.get(
         `${import.meta.env.VITE_API_URL}/v2/api/${
           import.meta.env.VITE_API_PATH
         }/admin/orders?page=${p}`
       );
-      console.log("order res", res);
 
       const allProduct = res?.data?.orders ?? {};
       setOrderData(Object.values(allProduct));
-
       setPageInfo(res.data.pagination);
-
       setOdPage(p);
-    },
+    }
 
-    [odPage]
-  );
 
   //結束 form 後 render 出產品
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = token;
     fetchOrder(odPage);
-  }, [fetchOrder]);
+  }, [fetchOrder,odPage]);
 
   return {
     deleteOrder,

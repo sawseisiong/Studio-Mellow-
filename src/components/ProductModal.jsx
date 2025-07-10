@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 
 function ProductModal({ mode }) {
   const [uploadImage, setUploadImage] = useState([]); //上傳圖片後出現小圖示預覽
-  const { state } = useLocation(); 
+  const { state } = useLocation(); //從上個頁面夾帶資料
   const [remoteImages, setRemoteImages] = useState( //上傳圖片到後端的 State
     state?.product?.imagesUrl || []
   );
-  const { dbPage, setDbPage,message, setMessage } = useOutletContext();
+  const { dbPage, setDbPage,setMessage } = useOutletContext();
 
   //產品類別分類
   const categories = [
@@ -57,10 +57,10 @@ function ProductModal({ mode }) {
 
   //發送表單打 API
   const onSubmit = async (data) => {
-    const enabled = data.is_enabled ? 1 : 0;
+    const enabled = data.is_enabled ? 1 : 0;//寫入 1 或 0（後端只認得這個）
 
     const payload = { ...data, imagesUrl: remoteImages, is_enabled: enabled };
-    if (mode === "edit") {
+    if (mode === "edit") {//若編輯模式，則 put 
       try {
         const res = await axios.put(
           `${import.meta.env.VITE_API_URL}/v2/api/${
@@ -131,17 +131,16 @@ function ProductModal({ mode }) {
     }
   };
 
-  const imageUrl = watch("imageUrl");
-  const imageFile = watch("imageFile");
+  // const imageUrl = watch("imageUrl");
+  // const imageFile = watch("imageFile");
 
   //上傳圖片
-
   const uploadFile = async (e) => {
-    const file = e.target.files?.[0];
-    const fd = new FormData();
-    fd.append("file-to-upload", file);
+    const file = e.target.files?.[0];//取得使用者選中的第一個檔案（多檔上傳就只拿第一個）
+    const fd = new FormData();//用 FormData 打包檔案
+    fd.append("file-to-upload", file);//加入資料
 
-    const localURL = URL.createObjectURL(file);
+    const localURL = URL.createObjectURL(file);//先用 URL.createObjectURL 生成「本機預覽用 URL」
     setUploadImage((pre) => [...pre, localURL]);
 
     const res = await axios.post(
@@ -151,8 +150,7 @@ function ProductModal({ mode }) {
       fd
     );
     const remoteUrl = res.data.imageUrl;
-    setRemoteImages([...remoteImages, remoteUrl]);
-    console.log("有沒有上傳圖片");
+    setRemoteImages([...remoteImages, remoteUrl]);//上傳圖片
   };
 
   return (

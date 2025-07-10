@@ -2,13 +2,12 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 
-
 function Cart() {
-  const {cartData,  getCart } = useOutletContext();
-  const [txtCoupon, setTxtCoupon] = useState("");
-  const [coupon, setCoupon] = useState({});
+  const { cartData, getCart } = useOutletContext();
+  const [txtCoupon, setTxtCoupon] = useState(""); //優惠卷文字
+  const [coupon, setCoupon] = useState({}); //優惠卷資料
 
-
+  //移除購物車商品
   const removeCart = async (id) => {
     try {
       const res = await axios.delete(
@@ -17,7 +16,7 @@ function Cart() {
         }/cart/${id}`
       );
       console.log(res);
-      getCart();
+      getCart(); //重新取得購物車資料
     } catch (err) {
       console.log(err);
     }
@@ -39,7 +38,7 @@ function Cart() {
         data
       );
       console.log(res);
-      getCart();
+      getCart(); //重新取得購物車資料
     } catch (err) {
       console.log(err);
     }
@@ -47,7 +46,6 @@ function Cart() {
 
   //使用優惠卷
   const useCoupon = async (cou) => {
-    console.log("coupon", cou);
     try {
       const data = {
         data: {
@@ -62,16 +60,11 @@ function Cart() {
       );
 
       setCoupon(res);
-      console.log("使用的coupon", res);
-      getCart();
-      console.log("使用的coupon2", coupon);
+      getCart();//重新取得購物車資料
     } catch (err) {
       console.log(err);
     }
   };
-
- 
-  
 
   return (
     <div>
@@ -95,40 +88,39 @@ function Cart() {
                 </tr>
               </thead>
               {cartData?.carts?.length ? (
-                  ""
-                ) : (
+                ""
+              ) : (
+                <div
+                  style={{
+                    position: "fixed",
+                    zIndex: "100",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    top: "0",
+                    bottom: "0",
+                    left: "0",
+                    right: "0",
+                  }}
+                >
                   <div
-                    style={{
-                      position: "fixed",
-                      zIndex: "100",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      top: "0",
-                      bottom: "0",
-                      left: "0",
-                      right: "0",
-                    }}
+                    className="card text-center "
+                    data-aos="zoom-in"
+                    style={{ width: "30rem" }}
                   >
-                    <div
-                      className="card text-center "
-                      data-aos="zoom-in"
-                      style={{ width: "30rem" }}
-                    >
-                      <div className="card-body py-5">
-                        <h5 className="card-title">購物車目前還沒靈感的身影</h5>
-                        <p className="card-text">
-                          去賣場尋找讓你心動的插畫作品吧！
-                        </p>
-                        <Link to="/products" className="btn btn-primary">
-                          開始探索
-                        </Link>
-                      </div>
+                    <div className="card-body py-5">
+                      <h5 className="card-title">購物車目前還沒靈感的身影</h5>
+                      <p className="card-text">
+                        去賣場尋找讓你心動的插畫作品吧！
+                      </p>
+                      <Link to="/products" className="btn btn-primary">
+                        開始探索
+                      </Link>
                     </div>
                   </div>
-                )}
+                </div>
+              )}
               <tbody>
-                
                 {cartData?.carts?.map((item) => {
                   return (
                     <tr className="border-bottom border-top" key={item.id}>
@@ -204,7 +196,6 @@ function Cart() {
                           onClick={() => removeCart(item.id)}
                         >
                           <i className="bi bi-x "></i>
-                        
                         </button>
                       </td>
                     </tr>
@@ -268,7 +259,7 @@ function Cart() {
               <div className="d-flex justify-content-between mt-4 align-items-center">
                 <div className="d-flex flex-column align-items-start">
                   <p className="pt-4 h4 fw-bold ">總金額</p>
-                  
+
                   <p className="text-muted fw-light mt-1 small">
                     {coupon?.data?.message}
                   </p>
@@ -280,13 +271,12 @@ function Cart() {
                   <p className="mb-0 h5 fw-bold">
                     {coupon?.data?.message && (
                       <del className="fw-light fs-5">NT${cartData.total}</del>
-                    ) 
-                    }
+                    )}
                   </p>
                 </div>
               </div>
 
-              <Link to="/checkout"  className="btn btn-dark w-100 mt-4">
+              <Link to="/checkout" className="btn btn-dark w-100 mt-4">
                 前往結帳
               </Link>
             </div>

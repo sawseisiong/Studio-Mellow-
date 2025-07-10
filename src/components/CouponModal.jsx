@@ -20,7 +20,7 @@ function CouponModal({ mode }) {
     },
   });
 
-  const { cpPage, setCpPage, fetchCoupon,message, setMessage } = useOutletContext();
+  const { cpPage, setCpPage, fetchCoupon, setMessage } = useOutletContext();
 
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -43,14 +43,15 @@ function CouponModal({ mode }) {
     }
   }, [mode]);
 
+  //發送表單
   const onSubmit = async (data) => {
     const payload = {
       ...data,
       is_enabled: Number(data.is_enabled),
       percent: Number(data.percent),
-      due_date: Math.floor(new Date(data.due_date).getTime() / 1000),
+      due_date: Math.floor(new Date(data.due_date).getTime() / 1000),//調整日期格式
     };
-    if (mode === "edit") {
+    if (mode === "edit") {//判斷是不是編輯
       try {
         const res = await axios.put(
           `${import.meta.env.VITE_API_URL}/v2/api/${
@@ -74,7 +75,7 @@ function CouponModal({ mode }) {
       }
       navigate(`/dashboard/couponlist?page=${cpPage}`);
     } else {
-      try {
+      try {//更新優惠卷資料
         const res = await axios.post(
           `${import.meta.env.VITE_API_URL}/v2/api/${
             import.meta.env.VITE_API_PATH
@@ -101,6 +102,7 @@ function CouponModal({ mode }) {
     }
   };
 
+  //更新日期資料不重新 render
   const today = useMemo(() => {
     const d = new Date();
     return d.toISOString().split("T")[0];

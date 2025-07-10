@@ -2,7 +2,7 @@ import { Link, useOutletContext, Outlet, useLocation } from "react-router-dom";
 import useProduct from "./hook/useProduct";
 
 function ProductList() {
-  const { dbPage, setDbPage, message, setMessage } = useOutletContext();
+  const { dbPage, setDbPage, message, setMessage } = useOutletContext();//傳入頁碼和跨元件訊息
 
   const { fetchProducts, pageInfo, productsData, deleteProduct } = useProduct({
     message,

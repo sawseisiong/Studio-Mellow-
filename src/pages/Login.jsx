@@ -3,8 +3,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [formData, setFormData] = useState({ username: "", password: "" });//初始化姓名和密碼
+  const [loginError, setLoginError] = useState(true);//設置登入錯誤訊息
   const navigate = useNavigate();
+
+  //更新登入資訊
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((pre) => ({
@@ -13,20 +16,20 @@ function Login() {
     }));
   };
 
-  const [loginError, setLoginError] = useState(true);
+  //發出登入 API 請求
   const handleLogin = async () => {
     const res = await axios.post(
       `${import.meta.env.VITE_API_URL}/v2/admin/signin`,
       formData
     );
-    setLoginError(res.data.success);
+    setLoginError(res.data.success);//是否錯誤
     const { token } = res.data;
     if (res.data.success === true) {
-      localStorage.setItem("token", token);
-      axios.defaults.headers.common["Authorization"] = token;
-      console.log("token", token);
+      localStorage.setItem("token", token);//把 token 存在 localStorage，保持登入狀態
+      axios.defaults.headers.common["Authorization"] = token;//把 token 更新到全域，之後打 API 不用再代入 token
+    
     }
-    navigate("/dashboard");
+    navigate("/dashboard");//完成登入，連到後台
   };
 
   return (

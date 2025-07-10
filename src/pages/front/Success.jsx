@@ -28,12 +28,11 @@ function Success() {
       <div
         data-aos="fade-up"
         data-aos-duration="3000"
-        className="w-md-50 w-100 position-absolute opacity-1 bg-success"
+        className="w-md-50 w-100 position-absolute opacity-1 bg-success" // bg-success 完成響應式背景圖切換
         style={{
           zIndex: "-1",
           minHeight: "100vh",
           right: "0",
-          // backgroundImage: "url('/img/success.png')",
           backgroundPosition: "center center",
           backgroundSize: "contain",
           backgroundSize: "cover",
