@@ -30,6 +30,9 @@ function Home() {
     });
   }, []);
 
+
+  
+
   //到首頁後，緩慢移動到頂部
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -43,6 +46,7 @@ function Home() {
           transitionDuration={1000}//切換速度 1秒
           easing="ease"
           arrows={false} //無箭頭
+          pauseOnHover={false}
         >
           {imgs.map((img, i) => {
             return (

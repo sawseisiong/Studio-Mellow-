@@ -11992,6 +11992,18 @@ a {
   transform: translateY(-6px);
 }
 
+@keyframes bounce-loop {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+.bounce-loop {
+  animation: bounce-loop 0.9s ease-in-out infinite;
+}
+
 @media (max-width: 767px) {
   .img-media {
     height: 350px;
@@ -12015,5 +12027,13 @@ a {
   }
   .bg-success {
     background-image: url("/img/success.png");
+  }
+  .navbar {
+    transition: background-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  /* 滑過 Banner 後要套用的樣式 */
+  .nav-solid {
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   }
 }/*# sourceMappingURL=all.css.map */

@@ -41,7 +41,7 @@ function Products() {
   return (
     <>
       <div
-        className="position-relative d-flex align-items-center justify-content-center"
+        className="position-relative d-flex align-items-center justify-content-center "
         style={{ minHeight: "450px" }}
       >
         <div
@@ -81,7 +81,7 @@ function Products() {
                   data-bs-target="#collapseOne"
                 >
                   <div className="d-flex justify-content-between align-items-center pe-1">
-                    <h4 className="mb-0">質感居家</h4>
+                    <button className="btn"><h4 className="mb-0">質感居家</h4></button>
                     <i className="fas fa-chevron-down"></i>
                   </div>
                 </div>
@@ -153,7 +153,7 @@ function Products() {
                   data-bs-target="#collapseTwo"
                 >
                   <div className="d-flex justify-content-between align-items-center pe-1">
-                    <h4 className="mb-0">暖心好禮</h4>
+                  <button className="btn"><h4 className="mb-0">暖心好禮</h4></button>
                     <i className="fas fa-chevron-down"></i>
                   </div>
                 </div>
@@ -225,7 +225,7 @@ function Products() {
                   data-bs-target="#collapseThree"
                 >
                   <div className="d-flex justify-content-between align-items-center pe-1">
-                    <h4 className="mb-0">親子童趣</h4>
+                  <button  className="btn"><h4 className="mb-0">親子童趣</h4></button>
                     <i className="fas fa-chevron-down"></i>
                   </div>
                 </div>
@@ -306,7 +306,7 @@ function Products() {
                         <div className="card-body p-0">
                           <h4 className="mb-0 mt-3">{product.title}</h4>
                           <p className="card-text mb-0">
-                            {`NT$${product.price}`}
+                            {`NT$${product.price.toLocaleString()}`}
                           </p>
                           <p className="text-muted mt-3"></p>
                         </div>

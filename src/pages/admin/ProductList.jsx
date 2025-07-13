@@ -15,7 +15,7 @@ function ProductList() {
       <h3>產品列表</h3>
       <hr />
       <div className="text-end">
-        <Link to="productmodal" className="btn btn-primary btn-sm">
+        <Link to="product-modal" className="btn btn-primary btn-sm">
           建立新商品
         </Link>
       </div>
@@ -42,7 +42,7 @@ function ProductList() {
                   <Link
                     type="button"
                     className="btn btn-primary btn-sm"
-                    to={`productmodal/${product.id}`}
+                    to={`product-modal/${product.id}`}
                     state={{ product }}
                   >
                     編輯

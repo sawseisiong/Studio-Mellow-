@@ -60,14 +60,70 @@ function Cart() {
       );
 
       setCoupon(res);
-      getCart();//重新取得購物車資料
+      getCart(); //重新取得購物車資料
     } catch (err) {
       console.log(err);
     }
   };
 
+  useEffect(()=>{
+    const getCoupon =async()=>{
+      try{
+        const res= await axios.get(`${import.meta.env.VITE_API_URL}/v2/api/${
+          import.meta.env.VITE_API_PATH
+        }/admin/coupons?page=1`)
+        console.log('coupon res',res)
+      }catch(err){
+        console.log(err)
+      }
+    }
+    getCoupon()
+  },[])
+
+
+  
+
   return (
     <div>
+      {cartData?.carts?.length ? (
+                ""
+              ) : (
+                <div
+                  style={{
+                    position: "fixed",
+                    zIndex: "100",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    top: "0",
+                    bottom: "0",
+                    left: "0",
+                    right: "0",
+                  }}
+                >
+                  <div
+                    className="position-fixed top-0 start-0 w-100 h-100
+    d-flex justify-content-center align-items-center
+    bg-white bg-opacity-75"
+                  >
+                    <div
+                      className="card text-center "
+                      data-aos="zoom-in"
+                      style={{ width: "30rem" }}
+                    >
+                      <div className="card-body py-5">
+                        <h5 className="card-title">購物車目前還沒靈感的身影</h5>
+                        <p className="card-text">
+                          去賣場尋找讓你心動的插畫作品吧！
+                        </p>
+                        <Link to="/products" className="btn btn-primary">
+                          開始探索
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
       <div className="mx-5 my-5 py-5 ">
         <h3 className="mt-3 mb-4">購物明細</h3>
         <div className="row">
@@ -87,39 +143,7 @@ function Cart() {
                   <th scope="col" className="border-0"></th>
                 </tr>
               </thead>
-              {cartData?.carts?.length ? (
-                ""
-              ) : (
-                <div
-                  style={{
-                    position: "fixed",
-                    zIndex: "100",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    top: "0",
-                    bottom: "0",
-                    left: "0",
-                    right: "0",
-                  }}
-                >
-                  <div
-                    className="card text-center "
-                    data-aos="zoom-in"
-                    style={{ width: "30rem" }}
-                  >
-                    <div className="card-body py-5">
-                      <h5 className="card-title">購物車目前還沒靈感的身影</h5>
-                      <p className="card-text">
-                        去賣場尋找讓你心動的插畫作品吧！
-                      </p>
-                      <Link to="/products" className="btn btn-primary">
-                        開始探索
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              )}
+              
               <tbody>
                 {cartData?.carts?.map((item) => {
                   return (
@@ -128,21 +152,23 @@ function Cart() {
                         scope="row"
                         className="border-0 px-0 font-weight-normal py-4"
                       >
-                        <img
-                          src={
-                            item?.product?.imageUrl ||
-                            item?.product?.imagesUrl?.[0]
-                          }
-                          alt="產品圖片"
-                          style={{
-                            width: "72px",
-                            height: "72px",
-                            objectFit: "cover",
-                          }}
-                        />
-                        <p className="mb-0 fw-bold ms-3 d-inline-block">
-                          {item.product.title}
-                        </p>
+                        <Link to={`/products/${item.product.id}`}>
+                          <img
+                            src={
+                              item?.product?.imageUrl ||
+                              item?.product?.imagesUrl?.[0]
+                            }
+                            alt="產品圖片"
+                            style={{
+                              width: "72px",
+                              height: "72px",
+                              objectFit: "cover",
+                            }}
+                          />
+                          <p className="mb-0 fw-bold ms-3 d-inline-block">
+                            {item.product.title}
+                          </p>
+                        </Link>
                       </th>
                       <td
                         className="border-0 align-middle"
@@ -169,7 +195,7 @@ function Cart() {
                             placeholder=""
                             aria-label="Example text with button addon"
                             aria-describedby="button-addon1"
-                            value={item.qty}
+                            defaultValue={item.qty}
                           />
                           <td className="input-group-append">
                             <button
@@ -186,8 +212,8 @@ function Cart() {
                           </td>
                         </td>
                       </td>
-                      <td className="border-0 align-middle">
-                        <p className="mb-0 ms-auto">{`NT$${item.total}`}</p>
+                      <td className="border-0 align-middle ">
+                        <p className=" ms-auto ">{`NT$${item.total}`}</p>
                       </td>
                       <td>
                         <button
@@ -207,7 +233,7 @@ function Cart() {
               <input
                 type="text"
                 className="form-control rounded-0 border-bottom border-top-0 border-start-0 border-end-0 shadow-none"
-                placeholder="Coupon Code"
+                placeholder="輸入優惠卷 SXEK"
                 aria-label="Recipient's username"
                 aria-describedby="button-addon2"
                 onBlur={(e) => {
@@ -223,7 +249,9 @@ function Cart() {
                     useCoupon(txtCoupon);
                   }}
                 >
-                  <i className="bi bi-ticket-perforated-fill"></i>
+                  <div className="bounce-loop">
+                    <i className="bi bi-ticket-perforated-fill"></i>
+                  </div>
                 </button>
               </div>
             </div>

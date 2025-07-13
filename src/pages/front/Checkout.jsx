@@ -140,7 +140,7 @@ function Checkout() {
         <div className="col-md-6">
           <form onSubmit={handleSubmit(onSubmit)}>
             <p>聯絡資訊 / 收件人資料</p>
-            <div className="mb-0">
+            <div className="mb-4">
               <label htmlFor="ContactMail" className="text-muted mb-0">
                 Email
               </label>
@@ -151,15 +151,15 @@ function Checkout() {
                 {...register("email", {
                   required: "email必填",
                   pattern: {
-                    value: /^[a-zA-Z0-9](\.?[a-zA-Z0-9]){5,29}@gmail\.com$/,
+                    value:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                     message: "僅限有效的 Gmail 帳號",
                   },
                 })}
                 placeholder="請輸入email"
-                className="form-control mb-4"
+                className="form-control "
               />
               {errors.email && (
-                <span className="text-red-600 text-danger small">
+                <span className="text-red-600 text-danger small ">
                   {errors.email.message}
                 </span>
               )}
@@ -262,7 +262,7 @@ function Checkout() {
                 <i className="fas fa-chevron-left me-2"></i> 回到上一頁
               </button>
               <button type="submit" className="btn btn-dark py-1 px-5">
-                submit
+                結帳
               </button>
             </div>
           </form>

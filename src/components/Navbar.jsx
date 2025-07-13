@@ -1,25 +1,54 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation  } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState ,useRef} from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 function Navbar({ cardData }) {
   //抓到最後一次商品到id，並在點擊 detail 分頁的時候，到該產品分頁
   const location = useLocation();
+  const navRef   = useRef(null);
+  const [logoColor , setLogoColor] =useState(true)
   const [lastProductId, setLastProductId] = useState(() =>
     localStorage.getItem("lastProductId")
   );
+
+
 
   useEffect(() => {
     setLastProductId(localStorage.getItem("lastProductId"));
   }, [location]);
 
+
+  //navbar在滑動往下時變實心白
+  useEffect(() => {
+    const nav = navRef.current;
+
+    ScrollTrigger.create({
+      start:300 ,              
+      onEnter: () =>{
+        nav.classList.add("nav-solid")
+        setLogoColor(false)
+      },
+      onLeaveBack: () => {
+        nav.classList.remove("nav-solid")
+        setLogoColor(true)
+      },
+    });
+
+    return () => ScrollTrigger.kill(); // 離開元件時清掉
+  }, []);
+
+
   return (
     <>
       <nav
+      ref={navRef}
         className="navbar navbar-expand-lg navbar-light pe-md-5 ps-md-5 pe-3 ps-3 fixed-top nav-glass bg-gradient"
         style={{
           "--bs-gradient":
-            "linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,0))",
+            "linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,0))",
         }}
       >
         <NavLink
@@ -27,9 +56,9 @@ function Navbar({ cardData }) {
           className="navbar-brand hover-float"
           style={({ isActive }) => ({
             backgroundImage: isActive
-              ? `url(${import.meta.env.BASE_URL}/img/logo-white.png)`
+              ? `url(${import.meta.env.BASE_URL}/img/logo-${logoColor?'white':'black'}.png)`
               : `url(${import.meta.env.BASE_URL}/img/logo-black.png)`,
-            height: 80,
+            height: 60,
             width: 150,
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
@@ -78,7 +107,7 @@ function Navbar({ cardData }) {
             >
               Product
             </NavLink>
-            <NavLink
+            {/* <NavLink
               className={({ isActive }) =>
                 `nav-item nav-link me-4 hover-float ${
                   isActive ? "text-dark" : "text-black-50"
@@ -87,7 +116,7 @@ function Navbar({ cardData }) {
               to={lastProductId ? `/products/${lastProductId}` : "#"}
             >
               Detail
-            </NavLink>
+            </NavLink> */}
             <NavLink
               className={({ isActive }) =>
                 `nav-item nav-link position-relative hover-float ${

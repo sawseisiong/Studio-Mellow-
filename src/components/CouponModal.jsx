@@ -73,7 +73,7 @@ function CouponModal({ mode }) {
             : { success: msg.success, message: msg.message }
         );
       }
-      navigate(`/dashboard/couponlist?page=${cpPage}`);
+      navigate(`/dashboard/coupon-list?page=${cpPage}`);
     } else {
       try {//更新優惠卷資料
         const res = await axios.post(
@@ -90,7 +90,7 @@ function CouponModal({ mode }) {
         );
         await fetchCoupon(cpPage);
         setCpPage(1);
-        navigate(`/dashboard/couponlist?page=${cpPage}`);
+        navigate(`/dashboard/coupon-list?page=${cpPage}`);
       } catch (err) {
         const msg = err?.response?.data;
         setMessage((prev) =>

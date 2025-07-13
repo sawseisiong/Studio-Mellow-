@@ -59,7 +59,7 @@ function FrontLayout({message, setMessage }) {
               </p>
               <p className="mb-0">客服信箱｜studio@mail.com</p>
             </div>
-            <p className="mb-0">© 2025 LOGO 版權所有｜All Rights Reserved.</p>
+            <p className="mb-0">© 2025 Studio Mellow 版權所有｜All Rights Reserved.</p>
           </div>
         </div>
       </div>}

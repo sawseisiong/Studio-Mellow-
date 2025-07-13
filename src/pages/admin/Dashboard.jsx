@@ -93,13 +93,13 @@ function Dashboard({
           <ul className="list-group list-group-flush">
             <Link
               className="list-group-item list-group-item-action py-3"
-              to="productlist"
+              to="product-list"
             >
               <i className="bi bi-cup-fill me-2" />
               產品列表
             </Link>
             <Link
-              to="couponlist"
+              to="coupon-list"
               className="list-group-item list-group-item-action py-3"
             >
               <i className="bi bi-ticket-perforated-fill me-2" />
@@ -107,7 +107,7 @@ function Dashboard({
             </Link>
             <Link
               className="list-group-item list-group-item-action py-3"
-              to="orderslist"
+              to="orders-list"
             >
               <i className="bi bi-receipt me-2" />
               訂單列表

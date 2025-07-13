@@ -13,28 +13,27 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-
-
 function ProductDetail() {
-  const [productsData, setProductsData] = useState({});//產品資料
-  const [allProductsData, setAllProductsData] = useState([]);//底下產品輪播圖 資料列
-  const [cartQuantity, setCartQuantity] = useState(1);//加入購物車數量 
-  const [isLoading, setIsLoading] = useState(false);//加入購物車 Loading 
-  const { id } = useParams();//從產品頁傳入的產品 id
+  const [productsData, setProductsData] = useState({}); //產品資料
+  const [allProductsData, setAllProductsData] = useState([]); //底下產品輪播圖 資料列
+  const [cartQuantity, setCartQuantity] = useState(1); //加入購物車數量
+  const [isLoading, setIsLoading] = useState(false); //加入購物車 Loading
+  const [addMessage, setAddedMessage] = useState(false);//出現加入購物車字樣
+  const { id } = useParams(); //從產品頁傳入的產品 id
   const swiperRef = useRef(null);
   Swiper.use([Autoplay, Navigation]);
-  const { getCart , message, setMessage } = useOutletContext();//傳入 更新購物車函式｜訊息通知
+  const { getCart, message, setMessage } = useOutletContext(); //傳入 更新購物車函式｜訊息通知
   const navigation = useNavigate();
 
   //加入購物車
   const addToCart = async () => {
     const data = {
       data: {
-        product_id: id,//產品 id
-        qty: cartQuantity,//數量
+        product_id: id, //產品 id
+        qty: cartQuantity, //數量
       },
     };
-    setIsLoading(true);//設置 Loading 時間
+    setIsLoading(true); //設置 Loading 時間
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/v2/api/${
@@ -42,17 +41,17 @@ function ProductDetail() {
         }/cart`,
         data
       );
-      setIsLoading(false);//解除 Loading 時間
+      setIsLoading(false); //解除 Loading 時間
       const msg = res.data; // 傳入新增購物車商品成功 訊息
       setMessage((prev) =>
         prev.success === msg.success && prev.message === msg.message
           ? prev
           : { success: msg.success, message: msg.message }
       );
-      getCart();//更新購物車資料
+      getCart(); //更新購物車資料
     } catch (err) {
       console.log(err);
-      setIsLoading(false);//恢復 Loading 初始設置
+      setIsLoading(false); //恢復 Loading 初始設置
     }
   };
 
@@ -122,10 +121,16 @@ function ProductDetail() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [id]);
 
+  useEffect(()=>{
+    if (!addMessage) return
+    const timer=  setTimeout(()=>setAddedMessage(false),1300)
+    return()=>clearTimeout(timer)
+  },[addMessage])
+
   return (
     <>
-      <Message message={message} setMessage={setMessage} />
-      <div className="mt-5 mx-5 pt-5">
+      {/* <Message message={message} setMessage={setMessage} /> */}
+      <div className="mt-5 mx-5 pt-5 ">
         <div className="row align-items-center">
           <div className="col-md-7">
             <div
@@ -197,9 +202,9 @@ function ProductDetail() {
             </nav>
             <h2 className="fw-bold h1 mb-1">{productsData.title}</h2>
             <p className="mb-0 text-muted text-end">
-              <del>{`NT$${productsData.origin_price}`}</del>
+              <del>{`NT$${productsData?.origin_price?.toLocaleString()}`}</del>
             </p>
-            <p className="h4 fw-bold text-end">{`NT$${productsData.price}`}</p>
+            <p className="h4 fw-bold text-end">{`NT$${productsData?.price?.toLocaleString()}`}</p>
             <div className="row align-items-center">
               <div className="col-6">
                 <div className="input-group my-3 bg-light rounded">
@@ -231,11 +236,24 @@ function ProductDetail() {
                 </div>
               </div>
               <div className="col-6">
+                {addMessage && (
+                  <p
+                    className="position-absolute text-success"
+                    data-aos="fade-up"
+                    data-aos-duration="900"
+                    style={{ top: "320px" }}
+                  >
+                    已加入購物車
+                  </p>
+                )}
                 <button
                   type="button"
-                  className="text-nowrap btn btn-dark w-100 py-2"
+                  className="text-nowrap btn btn-dark w-100 py-2 position-relative"
                   disabled={isLoading}
-                  onClick={() => addToCart()}
+                  onClick={() => {
+                    addToCart();
+                    setAddedMessage(true);
+                  }}
                 >
                   加入購物車
                 </button>
@@ -258,7 +276,7 @@ function ProductDetail() {
         >
           <div className="swiper-wrapper gap-4">
             {allProductsData
-              .filter((p) => p.id !== id)//排除當前頁的產品出現在下排輪播
+              .filter((p) => p.id !== id) //排除當前頁的產品出現在下排輪播
               .map((product) => {
                 return (
                   <div

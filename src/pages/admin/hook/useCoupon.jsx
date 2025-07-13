@@ -7,7 +7,7 @@ export default function useCoupon({ setMessage }) {
   const [pageInfo, setPageInfo] = useState({ total_pages: 1 });//總頁碼
   const { cpPage, setCpPage } = useOutletContext();//當前頁碼
 
-  //刪除圖片  刪除後抓「同一頁」
+  //刪除後抓「同一頁」
   const deleteCoupon = async (id) => {
     try {
       const res = await axios.delete(

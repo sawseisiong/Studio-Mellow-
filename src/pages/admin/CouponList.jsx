@@ -13,7 +13,7 @@ function CouponList(){
             <h3>優惠卷列表</h3>
             <hr />
             <div className="text-end">
-            <Link to="couponmodal" className="btn btn-primary btn-sm">   
+            <Link to="coupon-modal" className="btn btn-primary btn-sm">   
                 建立新優惠卷
               </Link>
             </div>
@@ -40,7 +40,7 @@ function CouponList(){
                     <Link
                       type="button"
                       className="btn btn-primary btn-sm"
-                      to={`couponmodal/${coupon.id}`} state={{coupon}}
+                      to={`coupon-modal/${coupon.id}`} state={{coupon}}
                       
                     >
                       編輯

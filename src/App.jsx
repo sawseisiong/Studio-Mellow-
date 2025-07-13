@@ -39,7 +39,7 @@ function App() {
           </Route>
           <Route path="cart" element={<Cart />} />
           <Route path="checkout" element={<Checkout />} />
-          <Route path="success" element={<Success />} />
+          {/* <Route path="success" element={<Success />} /> */}
         </Route>
         <Route path="success" element={<Success />} />
         <Route path="/login" element={<Login />}></Route>
@@ -59,27 +59,27 @@ function App() {
             />
           }
         >
-          <Route index element={<Navigate to="productlist" replace />} />
-          <Route path="productlist" element={<ProductList />}>
+          <Route index element={<Navigate to="product-list" replace />} />
+          <Route path="product-list" element={<ProductList />}>
             <Route
-              path="productmodal"
+              path="product-modal"
               element={<ProductModal mode="create" />}
             />
             <Route
-              path="productmodal/:id"
+              path="product-modal/:id"
               element={<ProductModal mode="edit" />}
             />
           </Route>
-          <Route path="couponlist" element={<CouponList />}>
-            <Route path="couponmodal" element={<CouponModal mode="create" />} />
+          <Route path="coupon-list" element={<CouponList />}>
+            <Route path="coupon-modal" element={<CouponModal mode="create" />} />
             <Route
-              path="couponmodal/:id"
+              path="coupon-modal/:id"
               element={<CouponModal mode="edit" />}
             />
           </Route>
-          <Route path="orderslist" element={<OrdersList />}>
-            <Route path="ordermodal" element={<OrderModal mode="create" />} />
-            <Route path="ordermodal/:id" element={<OrderModal mode="edit" />} />
+          <Route path="orders-list" element={<OrdersList />}>
+            <Route path="order-modal" element={<OrderModal mode="create" />} />
+            <Route path="order-modal/:id" element={<OrderModal mode="edit" />} />
           </Route>
         </Route>
       </Routes>
