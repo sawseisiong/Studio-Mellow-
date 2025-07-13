@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useOutletContext } from "react-router-dom";
+import IsLoading from "../../components/IsLoading";
 
 function Cart() {
   const { cartData, getCart } = useOutletContext();
   const [txtCoupon, setTxtCoupon] = useState(""); //優惠卷文字
   const [coupon, setCoupon] = useState({}); //優惠卷資料
+  const [isLoading, setIsLoading] = useState(false); //載入 API Loading
 
   //移除購物車商品
   const removeCart = async (id) => {
@@ -24,6 +26,7 @@ function Cart() {
 
   //更新購物車資料
   const updateCartItem = async (item, qty) => {
+    setIsLoading(true)
     try {
       const data = {
         data: {
@@ -39,6 +42,7 @@ function Cart() {
       );
       console.log(res);
       getCart(); //重新取得購物車資料
+      setIsLoading(false)
     } catch (err) {
       console.log(err);
     }
@@ -80,14 +84,21 @@ function Cart() {
     getCoupon()
   },[])
 
-
+  //載入購物車資料時跑 loading 畫面
+useEffect(()=>{
+  if(!('carts'in cartData)){
+    setIsLoading(true)
+  }else{
+    setIsLoading(false)
+  }
+},[cartData])
   
 
   return (
     <div>
-      {cartData?.carts?.length ? (
-                ""
-              ) : (
+      {isLoading && <IsLoading/>}
+      {cartData?.carts?.length === 0 ? (
+                 
                 <div
                   style={{
                     position: "fixed",
@@ -123,7 +134,7 @@ function Cart() {
                     </div>
                   </div>
                 </div>
-              )}
+              ):null}
       <div className="mx-5 my-5 py-5 ">
         <h3 className="mt-3 mb-4">購物明細</h3>
         <div className="row">

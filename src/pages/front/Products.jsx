@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import useFrontProducts from "./hook/useFrontProducts";
+import IsLoading from "../../components/IsLoading";
+
 
 function Products() {
   const {
@@ -12,12 +14,14 @@ function Products() {
     setActive,
     fetchCategory,
     fetchProducts,
+    isLoading
   } = useFrontProducts();//傳入 product 的 hook
 
   //從 Home 頁面點擊類別商品後，傳入 state
   const { state } = useLocation();
   const page = state?.page; //分類頁碼
   const category = state?.category; //該分類
+
 
   //一旦 state 更新，為 fetchCategory 傳入頁碼和分類
   useEffect(() => {
@@ -40,6 +44,7 @@ function Products() {
 
   return (
     <>
+    {isLoading &&<IsLoading />}
       <div
         className="position-relative d-flex align-items-center justify-content-center "
         style={{ minHeight: "450px" }}
@@ -51,14 +56,14 @@ function Products() {
             bottom: "0",
             left: "0",
             right: "0",
-            backgroundImage:` url('${import.meta.env.BASE_URL}/img/bg-product.png')`,
+            backgroundImage:` url('${import.meta.env.BASE_URL}img/bg-product.png')`,
             backgroundPosition: "center center",
             opacity: "0.4",
           }}
         ></div>
 
         <img
-          src={`${import.meta.env.BASE_URL}/img/logo-product.png`}
+          src={`${import.meta.env.BASE_URL}img/logo-product.png`}
           data-aos="fade-up"
           className="position-absolute "
           alt="logo"

@@ -45,8 +45,8 @@ export default function useCoupon({ setMessage }) {
         }/admin/orders?page=${p}`
       );
 
-      const allProduct = res?.data?.orders ?? {};
-      setOrderData(Object.values(allProduct));
+      const allProduct = res?.data?.orders ?? [];
+      setOrderData(allProduct);
       setPageInfo(res.data.pagination);
       setOdPage(p);
     }

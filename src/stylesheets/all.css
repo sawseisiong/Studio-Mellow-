@@ -12013,7 +12013,7 @@ a {
     height: 150px;
   }
   .bg-success {
-    background-image: url("/img/success-phone.png");
+    background-image: url("img/success-phone.png");
     max-width: 100%;
   }
 }
@@ -12026,7 +12026,7 @@ a {
     height: 250px;
   }
   .bg-success {
-    background-image: url("/img/success.png");
+    background-image: url("img/success.png");
   }
   .navbar {
     transition: background-color 0.25s ease, box-shadow 0.25s ease;

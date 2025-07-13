@@ -32,7 +32,7 @@ function FrontLayout({message, setMessage }) {
         <div className="container">
           <div className="d-flex align-items-center justify-content-between text-white mb-md-7 mb-4">
             <Link className="text-white h4" to="">
-              <img src={`${import.meta.env.BASE_URL}/img/logo.png`} alt="logo" style={{ height: 50 }} />
+              <img src={`${import.meta.env.BASE_URL}img/logo.png`} alt="logo" style={{ height: 50 }} />
             </Link>
             <ul className="d-flex list-unstyled mb-0 h4">
               <li>

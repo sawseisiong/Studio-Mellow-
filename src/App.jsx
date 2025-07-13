@@ -18,6 +18,7 @@ import Success from "./pages/front/Success";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+
 function App() {
   const [dbPage, setDbPage] = useState(1); //後台｜商品頁碼
   const [cpPage, setCpPage] = useState(1); //後台｜優惠卷頁碼
@@ -25,6 +26,7 @@ function App() {
   const [message, setMessage] = useState({ success: false, message: "" }); //跨元件訊息
 
   AOS.init(); //初始化 AOS 套件
+  
 
   return (
     <>
@@ -39,9 +41,9 @@ function App() {
           </Route>
           <Route path="cart" element={<Cart />} />
           <Route path="checkout" element={<Checkout />} />
-          {/* <Route path="success" element={<Success />} /> */}
+          <Route path="success" element={<Success />} />
         </Route>
-        <Route path="success" element={<Success />} />
+        {/* <Route path="success" element={<Success />} /> */}
         <Route path="/login" element={<Login />}></Route>
         <Route
           path="/dashboard"

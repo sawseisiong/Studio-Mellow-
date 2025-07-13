@@ -7,7 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
-  const imgs = ["/img/pp4.jpg", "/img/pp5.jpg", "/img/pp6.jpg"];
+  const imgs = ["img/pp4.jpg", "img/pp5.jpg", "img/pp6.jpg"];
 
   const navigate = useNavigate();
 
@@ -71,7 +71,7 @@ function Home() {
                   <div className="row justify-content-center my-auto ">
                     <div className="col-md-4 text-center w-100 hover-float">
                       <img
-                        src={`${import.meta.env.BASE_URL}/img/logo.png`}
+                        src={`${import.meta.env.BASE_URL}img/logo.png`}
                         alt="logo"
                         // style={{ height: "250px" }}
                         data-aos="fade-up"
@@ -109,7 +109,7 @@ function Home() {
               <div className="card border-0 mb-4">
                 <div style={{ height: 300 }}>
                   <img
-                    src={`${import.meta.env.BASE_URL}/img/digiDraw.jpg`}
+                    src={`${import.meta.env.BASE_URL}img/digiDraw.jpg`}
                     className="card-img-top rounded-0 w-100 h-100 object-fit-cover shadow hover-float "
                     alt="電繪系列圖片"
                   />
@@ -132,7 +132,7 @@ function Home() {
               <div className="card border-0 mb-4">
                 <div style={{ height: 300 }}>
                   <img
-                    src={`${import.meta.env.BASE_URL}/img/pictureBooks.jpg`}
+                    src={`${import.meta.env.BASE_URL}img/pictureBooks.jpg`}
                     className="card-img-top rounded-0 w-100 h-100 object-fit-cover shadow hover-float"
                     alt="繪本系列圖片"
                   />
@@ -155,7 +155,7 @@ function Home() {
               <div className="card border-0 mb-4">
                 <div style={{ height: 300}}>
                   <img
-                    src={`${import.meta.env.BASE_URL}/img/handDrawn.jpg`}
+                    src={`${import.meta.env.BASE_URL}img/handDrawn.jpg`}
                     className="card-img-top rounded-0 w-100 h-100 object-fit-cover shadow hover-float"
                     alt="手繪系列圖片"
                   />
@@ -194,49 +194,49 @@ function Home() {
                 >
                   <img
                     className=" imgSmall"
-                    src={`${import.meta.env.BASE_URL}/img/lemon.png`}
+                    src={`${import.meta.env.BASE_URL}img/lemon.png`}
                     alt="水果插畫"
                     style={{ transform: "translateX(150px)" ,height:250}} //設定高度，響應式不變形
                   />
                   <img
                     className="imgSmall"
-                    src={`${import.meta.env.BASE_URL}/img/orange.png`}
+                    src={`${import.meta.env.BASE_URL}img/orange.png`}
                     alt="水果插畫"
                     style={{ transform: "translateX(250px)" ,height:250}}
                   />
                   <img
                     className="imgSmall"
-                    src={`${import.meta.env.BASE_URL}/img/mango.png`}
+                    src={`${import.meta.env.BASE_URL}img/mango.png`}
                     alt="水果插畫"
                     style={{ transform: "translateX(350px)",height:250 }}
                   />
                   <img
                     className="imgSmall"
-                    src={`${import.meta.env.BASE_URL}/img/pomelo.png`}
+                    src={`${import.meta.env.BASE_URL}img/pomelo.png`}
                     alt="水果插畫"
                     style={{ transform: "translateX(450px)" ,height:250}}
                   />
                   <img
                     className="imgSmall"
-                    src={`${import.meta.env.BASE_URL}/img/roselle.png`}
+                    src={`${import.meta.env.BASE_URL}img/roselle.png`}
                     alt="水果插畫"
                     style={{ transform: "translateX(550px)" ,height:250}}
                   />
                   <img
                     className="imgSmall"
-                    src={`${import.meta.env.BASE_URL}/img/tomato.png`}
+                    src={`${import.meta.env.BASE_URL}img/tomato.png`}
                     alt="水果插畫"
                     style={{ transform: "translateX(650px)" ,height:250}}
                   />
                   <img
                     className="imgSmall"
-                    src={`${import.meta.env.BASE_URL}/img/strawberry.png`}
+                    src={`${import.meta.env.BASE_URL}img/strawberry.png`}
                     alt="水果插畫"
                     style={{ transform: "translateX(750px)" ,height:250}}
                   />
                   <img
                     className="imgSmall"
-                    src={`${import.meta.env.BASE_URL}/img/love-fruit.png`}
+                    src={`${import.meta.env.BASE_URL}img/love-fruit.png`}
                     alt="水果插畫"
                     style={{ transform: "translateX(850px)" ,height:250}}
                   />
@@ -255,7 +255,7 @@ function Home() {
           <Link
             type="button"
             to="/products"
-            class="btn btn-primary btn-lg px-5 hover-float"
+            className="btn btn-primary btn-lg px-5 hover-float"
             style={{ color: "#F3F3F3" }}
           >
             收藏這份溫柔
@@ -265,7 +265,7 @@ function Home() {
           <div className="row">
             <div className="col-md-6" data-aos="fade-up">
               <img
-                src={`${import.meta.env.BASE_URL}/img/hight-paper.png`}
+                src={`${import.meta.env.BASE_URL}img/hight-paper.png`}
                 alt="紙張質感圖"
                 className="img-fluid"
                 style={{ height: 400, width: 700, objectFit: "cover" }}
@@ -282,7 +282,7 @@ function Home() {
           <div className="row flex-row-reverse justify-content-between mt-4">
             <div className="col-md-6" data-aos="fade-up">
               <img
-                src={`${import.meta.env.BASE_URL}/img/pakege.jpg`}
+                src={`${import.meta.env.BASE_URL}img/pakege.jpg`}
                 alt="紙皮包裝圖"
                 className="img-fluid"
                 style={{ height: 400, width: 700, objectFit: "cover" }}

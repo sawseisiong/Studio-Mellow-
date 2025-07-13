@@ -8,15 +8,18 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "deploy": "cp dist/index.html dist/404.html && gh-pages -d dist"
   },
   "dependencies": {
+    "@dotlottie/player-component": "^2.7.12",
+    "@lottiefiles/dotlottie-react": "^0.14.3",
     "aos": "^3.0.0-beta.6",
     "axios": "^1.10.0",
     "bootstrap": "^5.3.7",
     "bootstrap-icons": "^1.13.1",
     "framer-motion": "^12.23.0",
     "gsap": "^3.13.0",
+    "lottie-react": "^2.4.1",
     "react": "^19.1.0",
     "react-confetti": "^6.4.0",
     "react-dom": "^19.1.0",

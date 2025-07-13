@@ -46,8 +46,8 @@ export default function useCoupon({ setMessage }) {
         }/admin/coupons?page=${p}`
       );
 
-      const allProduct = res?.data?.coupons ?? {};
-      setCouponData(Object.values(allProduct));
+      const allProduct = res?.data?.coupons ?? [];
+      setCouponData(allProduct);
       setPageInfo(res.data.pagination);
       setCpPage(p);
 

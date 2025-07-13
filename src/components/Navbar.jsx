@@ -56,8 +56,8 @@ function Navbar({ cardData }) {
           className="navbar-brand hover-float"
           style={({ isActive }) => ({
             backgroundImage: isActive
-              ? `url(${import.meta.env.BASE_URL}/img/logo-${logoColor?'white':'black'}.png)`
-              : `url(${import.meta.env.BASE_URL}/img/logo-black.png)`,
+              ? `url(${import.meta.env.BASE_URL}img/logo-${logoColor?'white':'black'}.png)`
+              : `url(${import.meta.env.BASE_URL}img/logo-black.png)`,
             height: 60,
             width: 150,
             backgroundSize: "contain",

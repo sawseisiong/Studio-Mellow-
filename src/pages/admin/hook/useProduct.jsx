@@ -51,8 +51,8 @@ export default function useProduct({ setMessage }) {
           import.meta.env.VITE_API_PATH
         }/admin/products?page=${p}`
       );
-      const allProduct = res?.data?.products ?? {};
-      setProductsData(Object.values(allProduct));
+      const allProduct = res?.data?.products ?? [];
+      setProductsData(allProduct);
       setPageInfo(res.data.pagination);
       setDbPage(p);
     }

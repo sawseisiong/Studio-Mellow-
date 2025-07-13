@@ -2,10 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate,useOutletContext } from "react-router-dom";
+import IsLoading from "../../components/IsLoading";
 
 function Checkout() {
   const [orderList, setOrderList] = useState([]);//訂單資料
   const { setCartData } = useOutletContext();//設置購物車資料
+  const [isLoading, setIsLoading] = useState(false); //載入 API Loading
 
   const {
     register,
@@ -42,20 +44,10 @@ function Checkout() {
     }
   };
 
-  // //清空購物車
-  // const clearCart = async () => {
-  //   try {
-  //     const res = await axios.delete(
-  //       `${import.meta.env.VITE_API_URL}/v2/api/${
-  //         import.meta.env.VITE_API_PATH
-  //       }/carts`
-  //     );
-  //   } catch (err) {
-  //   }
-  // };
 
   //顯示訂購產品數
   const orderItems = async (item) => {
+    setIsLoading(true)
     try {
       const res = await axios.get(
         `${import.meta.env.VITE_API_URL}/v2/api/${
@@ -64,6 +56,7 @@ function Checkout() {
       );
       console.log(res.data.data);
       setOrderList(res.data.data);
+      setIsLoading(false)
     } catch (err) {
       console.log(err);
     }
@@ -75,6 +68,7 @@ function Checkout() {
 
   return (
     <>
+    {isLoading &&<IsLoading/>}
       <div className="row justify-content-center pt-5 mt-5 mx-3 mb-3">
         <div className="col-md-10">
           <h3 className="fw-bold mb-1 pt-3">結帳資訊 / 完成您的訂單</h3>

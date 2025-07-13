@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Message from "../../components/Message";
+import IsLoading from "../../components/IsLoading";
 import {
   useParams,
   NavLink,
@@ -17,7 +18,8 @@ function ProductDetail() {
   const [productsData, setProductsData] = useState({}); //產品資料
   const [allProductsData, setAllProductsData] = useState([]); //底下產品輪播圖 資料列
   const [cartQuantity, setCartQuantity] = useState(1); //加入購物車數量
-  const [isLoading, setIsLoading] = useState(false); //加入購物車 Loading
+  const [cartLoading, setCartLoading] = useState(false);//加入購物車 Loading
+  const [isLoading, setIsLoading] = useState(false); //載入 API Loading
   const [addMessage, setAddedMessage] = useState(false);//出現加入購物車字樣
   const { id } = useParams(); //從產品頁傳入的產品 id
   const swiperRef = useRef(null);
@@ -33,7 +35,7 @@ function ProductDetail() {
         qty: cartQuantity, //數量
       },
     };
-    setIsLoading(true); //設置 Loading 時間
+    setCartLoading(true); //設置 Loading 時間
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/v2/api/${
@@ -41,7 +43,7 @@ function ProductDetail() {
         }/cart`,
         data
       );
-      setIsLoading(false); //解除 Loading 時間
+      setCartLoading(false); //解除 Loading 時間
       const msg = res.data; // 傳入新增購物車商品成功 訊息
       setMessage((prev) =>
         prev.success === msg.success && prev.message === msg.message
@@ -51,17 +53,19 @@ function ProductDetail() {
       getCart(); //更新購物車資料
     } catch (err) {
       console.log(err);
-      setIsLoading(false); //恢復 Loading 初始設置
+      setCartLoading(false); //恢復 Loading 初始設置
     }
   };
 
   //取出當前頁的產品｜資訊｜圖片
   const fetchProducts = async (id) => {
+    setIsLoading(true)
     const res = await axios.get(
       `${import.meta.env.VITE_API_URL}/v2/api/${
         import.meta.env.VITE_API_PATH
       }/product/${id}`
     );
+    setIsLoading(false)
     const product = res?.data?.product ?? {};
     setProductsData(product);
   };
@@ -130,6 +134,7 @@ function ProductDetail() {
   return (
     <>
       {/* <Message message={message} setMessage={setMessage} /> */}
+      {isLoading && <IsLoading/>}
       <div className="mt-5 mx-5 pt-5 ">
         <div className="row align-items-center">
           <div className="col-md-7">
@@ -249,7 +254,7 @@ function ProductDetail() {
                 <button
                   type="button"
                   className="text-nowrap btn btn-dark w-100 py-2 position-relative"
-                  disabled={isLoading}
+                  disabled={cartLoading}
                   onClick={() => {
                     addToCart();
                     setAddedMessage(true);
