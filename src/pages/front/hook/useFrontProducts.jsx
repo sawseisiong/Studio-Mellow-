@@ -13,6 +13,7 @@ export default function useFrontProducts() {
   //render 出所有產品
   const fetchProducts = async (p = 1) => {
     //如果是在產品分類的時候，點下頁面就只跳分類的下一頁
+    console.log('fetchProducts you pao')
     if (active) {
       fetchCategory(pdCtgPage, active);
       return;
