@@ -6,17 +6,6 @@
   Shop dreamy prints, manage orders with ease.
 </p>
 
-<p align="center">
-  <a href="https://sawseisiong.github.io/Studio-Mellow-/" target="_blank">
-    <img src="https://img.shields.io/badge/Demo-Live%20Site-blue?logo=githubpages" alt="Live Demo">
-  </a>
-  <a href="https://github.com/sawseisiong/Studio-Mellow-/actions" target="_blank">
-    <img src="https://github.com/sawseisiong/Studio-Mellow-/workflows/CI/badge.svg" alt="CI Status">
-  </a>
-  <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License">
-  <img src="https://img.shields.io/github/languages/top/sawseisiong/Studio-Mellow-" alt="Top language">
-</p>
-
 ---
 
 ## 🚀 線上體驗
