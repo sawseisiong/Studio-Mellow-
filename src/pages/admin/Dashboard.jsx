@@ -1,40 +1,30 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import Message from "../../components/Message";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect ,useState} from "react";
 
-function Dashboard({
-  dbPage,
-  setDbPage,
-  cpPage,
-  setCpPage,
-  message,
-  setMessage,
-  odPage,
-  setOdPage,
-}) {
+function Dashboard() {
   const navigate = useNavigate();
-  
+  const [message, setMessage] = useState({ success: false, message: "" }); //跨元件訊息
 
   //如果無夾帶 token 則返回 login 頁
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if(!token){
+    if (!token) {
       navigate("/login", { replace: true });
-      return
+      return;
     }
     (async () => {
       try {
-        await axios.post(`${import.meta.env.VITE_API_URL}/v2/api/user/check`);//檢查 token 是否正確
+        await axios.post(`${import.meta.env.VITE_API_URL}/v2/api/user/check`); //檢查 token 是否正確
       } catch (err) {
-        if (!err.response.data.success) {//token 不正確則返回 login 頁
+        if (!err.response.data.success) {
+          //token 不正確則返回 login 頁
           navigate("/login", { replace: true });
           console.log(err);
-        
         }
-        
       }
-    })()
+    })();
   }, []);
 
   //登出
@@ -69,10 +59,12 @@ function Dashboard({
           >
             <ul className="navbar-nav">
               <li className="nav-item ">
-              <button
+                <button
                   type="button"
                   className="btn btn-sm btn-light mx-2"
-                  onClick={()=>{navigate("/")}}
+                  onClick={() => {
+                    navigate("/");
+                  }}
                 >
                   切換電商前台
                 </button>
@@ -117,15 +109,8 @@ function Dashboard({
         <div className="w-100">
           <Outlet
             context={{
-              cpPage,
-              setCpPage,
-              dbPage,
-              setDbPage,
-              odPage,
-              setOdPage,
-              message, 
-              setMessage
-              
+              message,
+              setMessage,
             }}
           />
         </div>

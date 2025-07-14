@@ -1,12 +1,15 @@
 import { Link, useOutletContext, Outlet, useLocation } from "react-router-dom";
 import useProduct from "./hook/useProduct";
+import { useState } from "react";
 
 function ProductList() {
-  const { dbPage, setDbPage, message, setMessage } = useOutletContext();//傳入頁碼和跨元件訊息
-
+  const { message, setMessage } = useOutletContext(); //傳入頁碼和跨元件訊息
+  const [dbPage, setDbPage] = useState(1); //後台｜商品頁碼
   const { fetchProducts, pageInfo, productsData, deleteProduct } = useProduct({
     message,
     setMessage,
+    dbPage,
+    setDbPage,
   });
 
   return (
@@ -109,7 +112,6 @@ function ProductList() {
           </li>
         </ul>
       </nav>
- 
     </div>
   );
 }

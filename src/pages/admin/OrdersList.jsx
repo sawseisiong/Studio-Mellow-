@@ -1,14 +1,15 @@
 import { Link, useOutletContext, Outlet } from "react-router-dom";
 import useOrder from "./hook/useOrder";
+import { useState } from "react";
 
 function OrdersList() {
-  const { odPage,message, setMessage } = useOutletContext();//傳入頁碼和跨元件訊息
-  const { orderData, pageInfo, fetchOrder } = useOrder({ message, setMessage });
-
+  const { message, setMessage } = useOutletContext();//傳入頁碼和跨元件訊息
+  const [odPage, setOdPage] = useState(1); //後台｜商品訂購頁碼
+  const { orderData, pageInfo, fetchOrder } = useOrder({ message, setMessage,odPage, setOdPage });
 
   return (
     <div className="p-3">
-      <Outlet context={{ odPage, fetchOrder }} />
+      <Outlet context={{ odPage,setOdPage, fetchOrder }} />
       <h3>訂單列表</h3>
       <hr />
       <table className="table">

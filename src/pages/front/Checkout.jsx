@@ -243,7 +243,7 @@ function Checkout() {
                 className="form-control"
                 rows="3"
                 id="ContactMessage"
-                placeholder="message ... "
+                placeholder="請輸入訊息 ... "
               ></textarea>
             </div>
             <div className="d-flex flex-column-reverse flex-md-row mt-4 justify-content-between  align-items-md-center align-items-end  w-100">

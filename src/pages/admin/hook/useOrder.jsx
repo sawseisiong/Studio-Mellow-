@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 
-export default function useCoupon({ setMessage }) {
+export default function useCoupon({ setMessage,odPage, setOdPage }) {
   const [orderData, setOrderData] = useState([]);//訂單資料
   const [pageInfo, setPageInfo] = useState({ total_pages: 1 });//訂單總頁碼
-  const { odPage, setOdPage } = useOutletContext();//當前頁碼
+
 
   //刪除圖片  刪除後抓「同一頁」
   const deleteOrder = async (id) => {

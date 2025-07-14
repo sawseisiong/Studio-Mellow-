@@ -2,11 +2,11 @@ import { useState, useEffect} from "react";
 import { useLocation, useOutletContext } from "react-router-dom";
 import axios from "axios";
 
-export default function useProduct({ setMessage }) {
+export default function useProduct({ setMessage,dbPage, setDbPage }) {
   const [productsData, setProductsData] = useState([]);//商品資料
   const location = useLocation();
   const [pageInfo, setPageInfo] = useState({ total_pages: 1 });//總頁碼
-  const { dbPage, setDbPage } = useOutletContext();//當前頁碼
+
 
   //刪除圖片  刪除後回到「同一頁」
   const deleteProduct = async (id) => {

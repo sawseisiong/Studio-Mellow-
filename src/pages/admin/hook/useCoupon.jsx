@@ -2,10 +2,10 @@ import { useState, useEffect} from "react";
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 
-export default function useCoupon({ setMessage }) {
+export default function useCoupon({ setMessage,cpPage, setCpPage  }) {
   const [couponsData, setCouponData] = useState([]);//優惠卷資料
   const [pageInfo, setPageInfo] = useState({ total_pages: 1 });//總頁碼
-  const { cpPage, setCpPage } = useOutletContext();//當前頁碼
+
 
   //刪除後抓「同一頁」
   const deleteCoupon = async (id) => {

@@ -15,7 +15,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 function ProductDetail() {
-  const [productsData, setProductsData] = useState({}); //產品資料
+  const [productsData, setProductData] = useState({}); //產品資料
   const [allProductsData, setAllProductsData] = useState([]); //底下產品輪播圖 資料列
   const [cartQuantity, setCartQuantity] = useState(1); //加入購物車數量
   const [cartLoading, setCartLoading] = useState(false);//加入購物車 Loading
@@ -24,7 +24,7 @@ function ProductDetail() {
   const { id } = useParams(); //從產品頁傳入的產品 id
   const swiperRef = useRef(null);
   Swiper.use([Autoplay, Navigation]);
-  const { getCart, message, setMessage } = useOutletContext(); //傳入 更新購物車函式｜訊息通知
+  const { getCart, setMessage } = useOutletContext(); //傳入 更新購物車函式｜訊息通知
   const navigation = useNavigate();
 
   //加入購物車
@@ -67,7 +67,7 @@ function ProductDetail() {
     );
     setIsLoading(false)
     const product = res?.data?.product ?? {};
-    setProductsData(product);
+    setProductData(product);
   };
 
   //網頁 id 改變，觸發render

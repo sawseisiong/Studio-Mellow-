@@ -79,12 +79,16 @@ function Products() {
               id="accordionExample"
             >
               <div className="card border-0">
+              <div className="d-flex justify-content-between align-items-center pe-1 mb-3" >
+                    <button className="btn btn-primary hover-float "><h4 className="mb-0 text-white fs-6 " >全部商品</h4></button>
+                  </div>
                 <div
                   className="card-header px-0 py-4 bg-white border border-bottom-0 border-top border-start-0 border-end-0 rounded-0"
                   id="headingOne"
                   data-bs-toggle="collapse"
                   data-bs-target="#collapseOne"
                 >
+                  
                   <div className="d-flex justify-content-between align-items-center pe-1">
                     <button className="btn"><h4 className="mb-0">質感居家</h4></button>
                     <i className="fas fa-chevron-down"></i>

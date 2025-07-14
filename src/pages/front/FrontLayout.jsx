@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function FrontLayout({message, setMessage }) {
+function FrontLayout() {
   const [cartData, setCartData] = useState({});//購物車圖示｜加入購物車數｜購物車資訊
   const location = useLocation()
 
@@ -26,7 +26,7 @@ function FrontLayout({message, setMessage }) {
   return (
     <>
       <Navbar cardData={cartData} />
-      <Outlet context={{ getCart, cartData, setCartData ,message, setMessage }} />
+      <Outlet context={{ getCart, cartData, setCartData }} />
 
      {!hideFooter && <div className="bg-dark py-5">
         <div className="container">

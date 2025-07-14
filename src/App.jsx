@@ -20,10 +20,10 @@ import "aos/dist/aos.css";
 
 
 function App() {
-  const [dbPage, setDbPage] = useState(1); //後台｜商品頁碼
-  const [cpPage, setCpPage] = useState(1); //後台｜優惠卷頁碼
-  const [odPage, setOdPage] = useState(1); //後台｜商品訂購頁碼
-  const [message, setMessage] = useState({ success: false, message: "" }); //跨元件訊息
+  // const [dbPage, setDbPage] = useState(1); //後台｜商品頁碼
+  // const [cpPage, setCpPage] = useState(1); //後台｜優惠卷頁碼
+  // const [odPage, setOdPage] = useState(1); //後台｜商品訂購頁碼
+  // const [message, setMessage] = useState({ success: false, message: "" }); //跨元件訊息
 
   AOS.init(); //初始化 AOS 套件
   
@@ -32,7 +32,7 @@ function App() {
     <>
       <Routes>
         <Route
-          element={<FrontLayout message={message} setMessage={setMessage} />}
+          element={<FrontLayout/>}
         >
           <Route index element={<Home />}></Route>
           <Route path="products">
@@ -50,14 +50,14 @@ function App() {
           // 讓 Dashboard 把各頁碼和跨元件訊息傳到子 Route
           element={
             <Dashboard
-              message={message}
-              setMessage={setMessage}
-              dbPage={dbPage}
-              setDbPage={setDbPage}
-              cpPage={cpPage}
-              setCpPage={setCpPage}
-              odPage={odPage}
-              setOdPage={setOdPage}
+              // message={message}
+              // setMessage={setMessage}
+              // dbPage={dbPage}
+              // setDbPage={setDbPage}
+              // cpPage={cpPage}
+              // setCpPage={setCpPage}
+              // odPage={odPage}
+              // setOdPage={setOdPage}
             />
           }
         >

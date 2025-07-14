@@ -59,7 +59,6 @@ export default function useFrontProducts() {
 
   return {
     productsData,
-    setProductsData,
     pdPage,
     setPdPage,
     pdCtgPage,
