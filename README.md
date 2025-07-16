@@ -3,7 +3,6 @@
 <h1 align="center">Studio Mellow 🖼️</h1>
 <p align="center">
   <strong>插畫電商前後台 • React + Vite + Bootstrap 5</strong><br>
-  Shop dreamy prints, manage orders with ease.
 </p>
 
 ---
@@ -15,7 +14,7 @@
 | **https://sawseisiong.github.io/Studio-Mellow-/** | **https://sawseisiong.github.io/Studio-Mellow-/login**<br>測試帳號：`testtest@gmail.com`<br>密碼：`testtest123` |
 
 <details>
-<summary>點我看 Demo GIF / 截圖</summary>
+<!-- <summary>點我看 Demo GIF / 截圖</summary> -->
 
 ![產品瀏覽](docs/demo-browse.gif)
 ![後台訂單](docs/demo-admin.gif)
