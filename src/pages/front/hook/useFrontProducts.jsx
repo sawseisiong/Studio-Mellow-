@@ -13,14 +13,15 @@ export default function useFrontProducts() {
   //render 出所有產品
   const fetchProducts = async (p = 1) => {
     //如果是在產品分類的時候，點下頁面就只跳分類的下一頁
-    console.log('fetchProducts you pao')
     if (active) {
+      console.log('active111',active)
       fetchCategory(pdCtgPage, active);
       return;
     }
     if (p <= 0) {
       p = 1;
     }
+    console.log('bugaipao')
     setIsLoading(true)
     const res = await axios.get(
       `${import.meta.env.VITE_API_URL}/v2/api/${
@@ -36,7 +37,8 @@ export default function useFrontProducts() {
   };
 
   useEffect(() => {
-    fetchProducts(pdPage);
+      fetchProducts(pdPage);
+    
   }, [pdPage, active]);
 
   //呼叫商品分類

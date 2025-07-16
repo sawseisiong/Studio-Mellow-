@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import useFrontProducts from "./hook/useFrontProducts";
 import IsLoading from "../../components/IsLoading";
 
@@ -7,6 +7,7 @@ import IsLoading from "../../components/IsLoading";
 function Products() {
   const {
     productsData,
+    setPdPage,
     pdPage,
     pdCtgPage,
     pageInfo,
@@ -22,15 +23,19 @@ function Products() {
   const page = state?.page; //分類頁碼
   const category = state?.category; //該分類
 
+  const navigate =useNavigate()
+
 
   //一旦 state 更新，為 fetchCategory 傳入頁碼和分類
   useEffect(() => {
     if (category) {
-      fetchCategory(page, category);
+      setActive(category);
+      setPdPage(page)
+
     } else {
       return;
     }
-  }, [state]);
+  }, [page,category]);
 
   //點擊下排商品頁碼後，緩慢移動到頂部
   useEffect(() => {
@@ -113,6 +118,7 @@ function Products() {
                           onClick={(e) => {
                             setActive("場景系列");
                             fetchCategory(pdCtgPage, "場景系列");
+                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"場景系列"}})
                           }}
                         >
                           {console.log("active", active)}
@@ -129,6 +135,7 @@ function Products() {
                           onClick={(e) => {
                             setActive("3D 系列");
                             fetchCategory(pdCtgPage, "3D 系列");
+                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"3D 系列"}})
                           }}
                         >
                           3D 系列
@@ -145,6 +152,7 @@ function Products() {
                           onClick={(e) => {
                             setActive("電繪系列");
                             fetchCategory(pdCtgPage, "電繪系列");
+                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"電繪系列"}})
                           }}
                         >
                           電繪系列
@@ -185,6 +193,7 @@ function Products() {
                           onClick={(e) => {
                             setActive("明信片系列");
                             fetchCategory(pdCtgPage, "明信片系列");
+                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"明信片系列"}})
                           }}
                         >
                           明信片系列
@@ -201,6 +210,7 @@ function Products() {
                           onClick={(e) => {
                             setActive("手繪系列");
                             fetchCategory(pdCtgPage, "手繪系列");
+                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"手繪系列"}})
                           }}
                         >
                           手繪系列
@@ -217,6 +227,7 @@ function Products() {
                           onClick={(e) => {
                             setActive("水果系列");
                             fetchCategory(pdCtgPage, "水果系列");
+                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"水果系列"}})
                           }}
                         >
                           水果系列
@@ -257,6 +268,7 @@ function Products() {
                           onClick={(e) => {
                             setActive("動物系列");
                             fetchCategory(pdCtgPage, "動物系列");
+                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"動物系列"}})
                           }}
                         >
                           動物系列
@@ -273,6 +285,7 @@ function Products() {
                           onClick={(e) => {
                             setActive("繪本系列");
                             fetchCategory(pdCtgPage, "繪本系列");
+                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"繪本系列"}})
                           }}
                         >
                           繪本系列

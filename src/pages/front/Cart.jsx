@@ -211,7 +211,8 @@ function Cart() {
                             placeholder=""
                             aria-label="Example text with button addon"
                             aria-describedby="button-addon1"
-                            defaultValue={item.qty}
+                            value={item.qty}
+                            readOnly
                           />
                           <div className="input-group-append">
                             <button

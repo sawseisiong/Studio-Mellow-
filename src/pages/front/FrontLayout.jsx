@@ -17,6 +17,7 @@ function FrontLayout() {
       }/cart`
     );
     setCartData(res.data.data);
+    console.log("res.data.data",res.data.data)
   };
 
   useEffect(() => {

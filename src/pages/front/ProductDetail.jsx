@@ -45,11 +45,7 @@ function ProductDetail() {
       );
       setCartLoading(false); //解除 Loading 時間
       const msg = res.data; // 傳入新增購物車商品成功 訊息
-      setMessage((prev) =>
-        prev.success === msg.success && prev.message === msg.message
-          ? prev
-          : { success: msg.success, message: msg.message }
-      );
+      
       getCart(); //更新購物車資料
     } catch (err) {
       console.log(err);
