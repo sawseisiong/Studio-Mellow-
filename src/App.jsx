@@ -21,7 +21,7 @@ import "aos/dist/aos.css";
 
 function App() {
   // const [dbPage, setDbPage] = useState(1); //後台｜商品頁碼
-  // const [cpPage, setCpPage] = useState(1); //後台｜優惠卷頁碼
+  // const [cpPage, setCpPage] = useState(1); //後台｜優惠券頁碼
   // const [odPage, setOdPage] = useState(1); //後台｜商品訂購頁碼
   // const [message, setMessage] = useState({ success: false, message: "" }); //跨元件訊息
 

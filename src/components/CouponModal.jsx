@@ -36,7 +36,7 @@ function CouponModal({ mode }) {
     navigate(-1);
   };
 
-  //編輯優惠卷，自動填上之前的資料
+  //編輯優惠券，自動填上之前的資料
   useEffect(() => {
     if (mode === "edit" && state?.coupon) {
       reset(state.coupon);
@@ -75,7 +75,7 @@ function CouponModal({ mode }) {
       }
       navigate(`/dashboard/coupon-list?page=${cpPage}`);
     } else {
-      try {//更新優惠卷資料
+      try {//更新優惠券資料
         const res = await axios.post(
           `${import.meta.env.VITE_API_URL}/v2/api/${
             import.meta.env.VITE_API_PATH

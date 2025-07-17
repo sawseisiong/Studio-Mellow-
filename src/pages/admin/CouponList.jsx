@@ -4,7 +4,7 @@ import { useState } from "react";
 
 function CouponList(){
   const { message, setMessage} = useOutletContext()//傳入頁碼和跨元件訊息
-  const [cpPage, setCpPage] = useState(1); //後台｜優惠卷頁碼
+  const [cpPage, setCpPage] = useState(1); //後台｜優惠券頁碼
   const {couponsData,deleteCoupon,pageInfo,fetchCoupon} =useCoupon({ message, setMessage,cpPage, setCpPage})
 
   
@@ -13,11 +13,11 @@ function CouponList(){
       
     <div className="p-3">
       <Outlet context={{cpPage, setCpPage,fetchCoupon,message, setMessage}}/>
-            <h3>優惠卷列表</h3>
+            <h3>優惠券列表</h3>
             <hr />
             <div className="text-end">
             <Link to="coupon-modal" className="btn btn-primary btn-sm">   
-                建立新優惠卷
+                建立新優惠券
               </Link>
             </div>
             <table className="table">
