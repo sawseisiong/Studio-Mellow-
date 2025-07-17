@@ -1,5 +1,5 @@
 import axios from "axios";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 
@@ -69,7 +69,7 @@ function OrderModal({ mode }) {
     if (order.status !== undefined) {
       setStatus(order.status);
     }
-  }, [status]);
+  }, [order.status]);
 
   return (
     <div
