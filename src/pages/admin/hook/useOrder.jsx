@@ -37,7 +37,8 @@ export default function useCoupon({ setMessage,odPage, setOdPage }) {
   };
 
   //render 出所有產品
-  const fetchOrder =async (p = 1) => {
+  const fetchOrder = async (p = 1) => {
+    try {
       p = Math.max(1, p);
       const res = await axios.get(
         `${import.meta.env.VITE_API_URL}/v2/api/${
@@ -49,7 +50,18 @@ export default function useCoupon({ setMessage,odPage, setOdPage }) {
       setOrderData(allProduct);
       setPageInfo(res.data.pagination);
       setOdPage(p);
+    } catch (err) {
+      const msg = err?.response?.data ?? {
+        success: false,
+        message: "無法取得訂單資料",
+      };
+      setMessage((prev) =>
+        prev.success === msg.success && prev.message === msg.message
+          ? prev
+          : { success: msg.success, message: msg.message }
+      );
     }
+  };
 
 
   //結束 form 後 render 出產品

@@ -41,11 +41,9 @@ export default function useProduct({ setMessage,dbPage, setDbPage }) {
   };
 
   //render 出所有產品
-  const fetchProducts =async (p = 1)=>{
-
-      if (p <= 0) {
-        p = 1;
-      }
+  const fetchProducts = async (p = 1) => {
+    try {
+      p = Math.max(1, p);
       const res = await axios.get(
         `${import.meta.env.VITE_API_URL}/v2/api/${
           import.meta.env.VITE_API_PATH
@@ -55,7 +53,18 @@ export default function useProduct({ setMessage,dbPage, setDbPage }) {
       setProductsData(allProduct);
       setPageInfo(res.data.pagination);
       setDbPage(p);
+    } catch (err) {
+      const msg = err?.response?.data ?? {
+        success: false,
+        message: "無法取得產品資料",
+      };
+      setMessage((prev) =>
+        prev.success === msg.success && prev.message === msg.message
+          ? prev
+          : { success: msg.success, message: msg.message }
+      );
     }
+  };
 
   //結束 form 後 render 出產品,夾帶 token 重載不登出
   useEffect(() => {

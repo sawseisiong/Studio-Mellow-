@@ -37,8 +37,8 @@ export default function useCoupon({ setMessage,cpPage, setCpPage  }) {
   };
 
   //render 出所有產品
-  const fetchCoupon =async (p = 1) => {
-
+  const fetchCoupon = async (p = 1) => {
+    try {
       p = Math.max(1, p);
       const res = await axios.get(
         `${import.meta.env.VITE_API_URL}/v2/api/${
@@ -50,8 +50,18 @@ export default function useCoupon({ setMessage,cpPage, setCpPage  }) {
       setCouponData(allProduct);
       setPageInfo(res.data.pagination);
       setCpPage(p);
-
+    } catch (err) {
+      const msg = err?.response?.data ?? {
+        success: false,
+        message: "無法取得優惠券資料",
+      };
+      setMessage((prev) =>
+        prev.success === msg.success && prev.message === msg.message
+          ? prev
+          : { success: msg.success, message: msg.message }
+      );
     }
+  };
 
 
   //結束 form 後 render 出產品

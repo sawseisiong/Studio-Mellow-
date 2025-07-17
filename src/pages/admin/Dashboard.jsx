@@ -27,7 +27,7 @@ function Dashboard() {
   //登出
   const logOut = async () => {
     sessionStorage.removeItem("token");
-    await axios.post(`${import.meta.env.VITE_API_URL}//v2/logout`);
+    await axios.post(`${import.meta.env.VITE_API_URL}/v2/logout`);
     navigate("/login", { replace: true });
   };
 
