@@ -299,7 +299,7 @@ function ProductModal({ mode }) {
                       <label className="w-100" htmlFor="unit">
                         單位
                         <input
-                          type="unit"
+                          type="text"
                           id="unit"
                           {...register("unit", { required: "單位必填" })}
                           placeholder="請輸入單位"
@@ -391,7 +391,7 @@ function ProductModal({ mode }) {
                         className="form-control"
                       />
                     </label>
-                    {errors.description && (
+                    {errors.content && (
                       <p className="text-red-600 text-danger small">
                         {errors.content.message}
                       </p>

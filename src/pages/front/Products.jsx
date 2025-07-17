@@ -19,7 +19,8 @@ function Products() {
   } = useFrontProducts();//傳入 product 的 hook
 
   //從 Home 頁面點擊類別商品後，傳入 state
-  const { state } = useLocation();
+  const location = useLocation();
+  const { state } = location;
   const page = state?.page; //分類頁碼
   const category = state?.category; //該分類
 

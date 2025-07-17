@@ -3,13 +3,14 @@ import "react-slideshow-image/dist/styles.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
   const imgs = ["img/pp4.jpg", "img/pp5.jpg", "img/pp6.jpg"];
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   //水果列上的商品動畫
   useEffect(() => {
