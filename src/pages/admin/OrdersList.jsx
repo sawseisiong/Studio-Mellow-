@@ -52,7 +52,7 @@ function OrdersList() {
                   <Link
                     type="button"
                     className="btn btn-primary btn-sm"
-                    to="ordermodal"
+                    to="order-modal"
                     state={{ order }}
                   >
                     查看

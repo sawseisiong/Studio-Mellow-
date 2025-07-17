@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 
@@ -37,7 +37,7 @@ export default function useCoupon({ setMessage,cpPage, setCpPage  }) {
   };
 
   //render 出所有產品
-  const fetchCoupon = async (p = 1) => {
+  const fetchCoupon = useCallback(async (p = 1) => {
     try {
       p = Math.max(1, p);
       const res = await axios.get(
@@ -61,7 +61,7 @@ export default function useCoupon({ setMessage,cpPage, setCpPage  }) {
           : { success: msg.success, message: msg.message }
       );
     }
-  };
+  }, [setMessage, setCpPage]);
 
 
   //結束 form 後 render 出產品

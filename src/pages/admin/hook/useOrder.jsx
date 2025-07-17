@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
-export default function useCoupon({ setMessage,odPage, setOdPage }) {
+export default function useOrder({ setMessage, odPage, setOdPage }) {
   const [orderData, setOrderData] = useState([]);//訂單資料
   const [pageInfo, setPageInfo] = useState({ total_pages: 1 });//訂單總頁碼
 
@@ -37,7 +36,7 @@ export default function useCoupon({ setMessage,odPage, setOdPage }) {
   };
 
   //render 出所有產品
-  const fetchOrder = async (p = 1) => {
+  const fetchOrder = useCallback(async (p = 1) => {
     try {
       p = Math.max(1, p);
       const res = await axios.get(
@@ -61,7 +60,7 @@ export default function useCoupon({ setMessage,odPage, setOdPage }) {
           : { success: msg.success, message: msg.message }
       );
     }
-  };
+  }, [setMessage, setOdPage]);
 
 
   //結束 form 後 render 出產品

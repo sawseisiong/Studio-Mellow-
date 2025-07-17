@@ -405,7 +405,7 @@ function ProductModal({ mode }) {
                         className="form-control"
                       />
                     </label>
-                    {errors.description && (
+                    {errors.content && (
                       <p className="text-red-600 text-danger small">
                         {errors.content.message}
                       </p>
