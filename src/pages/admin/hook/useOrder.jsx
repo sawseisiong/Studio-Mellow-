@@ -54,7 +54,7 @@ export default function useCoupon({ setMessage,odPage, setOdPage }) {
 
   //結束 form 後 render 出產品
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = token;
     fetchOrder(odPage);
   }, [fetchOrder,odPage]);

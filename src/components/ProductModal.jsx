@@ -137,20 +137,34 @@ function ProductModal({ mode }) {
   //上傳圖片
   const uploadFile = async (e) => {
     const file = e.target.files?.[0];//取得使用者選中的第一個檔案（多檔上傳就只拿第一個）
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      setMessage({ success: false, message: "僅能上傳圖片檔" });
+      return;
+    }
+    if (file.size > 2 * 1024 * 1024) {
+      setMessage({ success: false, message: "檔案大小不得超過 2MB" });
+      return;
+    }
+
     const fd = new FormData();//用 FormData 打包檔案
     fd.append("file-to-upload", file);//加入資料
 
     const localURL = URL.createObjectURL(file);//先用 URL.createObjectURL 生成「本機預覽用 URL」
     setUploadImage((pre) => [...pre, localURL]);
 
-    const res = await axios.post(
-      `${import.meta.env.VITE_API_URL}/v2/api/${
-        import.meta.env.VITE_API_PATH
-      }/admin/upload`,
-      fd
-    );
-    const remoteUrl = res.data.imageUrl;
-    setRemoteImages([...remoteImages, remoteUrl]);//上傳圖片
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/v2/api/${
+          import.meta.env.VITE_API_PATH
+        }/admin/upload`,
+        fd
+      );
+      const remoteUrl = res.data.imageUrl;
+      setRemoteImages([...remoteImages, remoteUrl]);//上傳圖片
+    } catch (err) {
+      setMessage({ success: false, message: "上傳失敗" });
+    }
   };
 
   return (

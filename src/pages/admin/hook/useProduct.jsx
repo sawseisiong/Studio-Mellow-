@@ -59,7 +59,7 @@ export default function useProduct({ setMessage,dbPage, setDbPage }) {
 
   //結束 form 後 render 出產品,夾帶 token 重載不登出
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = token;
     fetchProducts(dbPage);
   }, [fetchProducts, location,dbPage]);
