@@ -5,8 +5,8 @@ import IsLoading from "../../components/IsLoading";
 
 function Cart() {
   const { cartData, getCart } = useOutletContext();
-  const [txtCoupon, setTxtCoupon] = useState(""); //優惠卷文字
-  const [coupon, setCoupon] = useState({}); //優惠卷資料
+  const [txtCoupon, setTxtCoupon] = useState(""); //優惠券文字
+  const [coupon, setCoupon] = useState({}); //優惠券資料
   const [isLoading, setIsLoading] = useState(false); //載入 API Loading
   const [couponErr, setCouponErr] = useState(false);
 
@@ -49,7 +49,7 @@ function Cart() {
     }
   };
 
-  //使用優惠卷
+  //使用優惠券
   const useCoupon = async (cou) => {
     try {
       const data = {
@@ -250,7 +250,7 @@ function Cart() {
               <input
                 type="text"
                 className="form-control rounded-0 border-bottom border-top-0 border-start-0 border-end-0 shadow-none"
-                placeholder="輸入優惠卷 SXEK"
+                placeholder="輸入優惠券 SXEK"
                 aria-label="Recipient's username"
                 aria-describedby="button-addon2"
                 defaultValue={txtCoupon}   
