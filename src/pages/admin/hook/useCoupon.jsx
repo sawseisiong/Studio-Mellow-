@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 
 export default function useCoupon({ setMessage,cpPage, setCpPage  }) {
-  const [couponsData, setCouponData] = useState([]);//優惠卷資料
+  const [couponsData, setCouponData] = useState([]);//優惠券資料
   const [pageInfo, setPageInfo] = useState({ total_pages: 1 });//總頁碼
 
 

@@ -28,7 +28,7 @@ function OrderModal({ mode }) {
     navigate(-1);
   };
 
-  //編輯優惠卷，自動填上之前的資料
+  //編輯優惠券，自動填上之前的資料
   useEffect(() => {
     if (mode === "edit" && state?.order) {
       reset(state.order);
