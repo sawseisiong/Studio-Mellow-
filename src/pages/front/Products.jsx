@@ -5,6 +5,12 @@ import IsLoading from "../../components/IsLoading";
 
 
 function Products() {
+  // 讀取路由狀態，若從首頁點分類進來會帶入分類與頁碼
+  const location = useLocation();
+  const { state } = location;
+  const page = state?.page;
+  const category = state?.category;
+
   const {
     productsData,
     setPdPage,
@@ -16,24 +22,9 @@ function Products() {
     fetchCategory,
     fetchProducts,
     isLoading
-  } = useFrontProducts();//傳入 product 的 hook
+  } = useFrontProducts(category, page || 1); // 傳入初始分類與頁碼，避免先載入全部商品
 
-  //從 Home 頁面點擊類別商品後，傳入 state
-  const location = useLocation();
-  const { state } = location;
-  const page = state?.page; //分類頁碼
-  const category = state?.category; //該分類
-
-  const navigate =useNavigate()
-
-
-  // 一旦 state 更新就載入指定分類商品
-  useEffect(() => {
-    if (category) {
-      setActive(category);
-      fetchCategory(page || 1, category);
-    }
-  }, [page, category]);
+  const navigate = useNavigate();
 
   //點擊下排商品頁碼後，緩慢移動到頂部
   useEffect(() => {

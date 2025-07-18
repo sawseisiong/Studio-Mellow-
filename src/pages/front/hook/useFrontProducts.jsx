@@ -2,12 +2,13 @@ import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 
-export default function useFrontProducts() {
-  const [productsData, setProductsData] = useState([]); //商品資料
-  const [pdPage, setPdPage] = useState(1); //當前商品頁碼
-  const [pdCtgPage, setPdCtgPage] = useState(1); //當前 分類 產品頁碼
-  const [pageInfo, setPageInfo] = useState({ total_pages: 1 }); //總頁碼數
-  const [active, setActive] = useState(""); //產品分類（用來點擊更新）
+// 讓外部可傳入初始分類與頁碼，避免載入頁面時先顯示全部商品
+export default function useFrontProducts(initCategory = "", initPage = 1) {
+  const [productsData, setProductsData] = useState([]); // 商品資料
+  const [pdPage, setPdPage] = useState(1); // 全部商品頁碼
+  const [pdCtgPage, setPdCtgPage] = useState(initPage); // 分類商品頁碼
+  const [pageInfo, setPageInfo] = useState({ total_pages: 1 }); // 總頁碼數
+  const [active, setActive] = useState(initCategory); // 目前分類
   const [isLoading, setIsLoading] = useState(false); //載入 API Loading
 
   // 取得所有商品
@@ -32,7 +33,7 @@ export default function useFrontProducts() {
     setIsLoading(false);
   }, [active]);
 
-  // 依據目前狀態抓取商品或分類商品
+  // 根據目前分類狀態決定要抓取全部商品還是指定分類
   useEffect(() => {
     if (active) {
       fetchCategory(pdCtgPage, active);
