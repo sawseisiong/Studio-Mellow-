@@ -44,5 +44,5 @@ Studio-Mellow-
 │   ├── pages/        # 前後台頁面
 │   ├── hooks/        # 自訂 hooks（如 useAuth）
 │   └── styles/       # SCSS 與 Bootstrap override
-├── .env              # API_ENDPOINT 等環境變數
+├── .env.example      # API_ENDPOINT 等環境變數範例
 └── vite.config.js    # Path alias、Gh-pages base

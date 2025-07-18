@@ -9,30 +9,25 @@ function Dashboard() {
 
   //如果無夾帶 token 則返回 login 頁
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     if (!token) {
       navigate("/login", { replace: true });
       return;
     }
+    axios.defaults.headers.common["Authorization"] = token;
     (async () => {
       try {
         await axios.post(`${import.meta.env.VITE_API_URL}/v2/api/user/check`); //檢查 token 是否正確
       } catch (err) {
-        if (!err.response.data.success) {
-          //token 不正確則返回 login 頁
-          navigate("/login", { replace: true });
-          console.log(err);
-        }
+        navigate("/login", { replace: true });
       }
     })();
   }, []);
 
   //登出
   const logOut = async () => {
-    console.log("logOut");
-    localStorage.removeItem("token");
-    await axios.post(`${import.meta.env.VITE_API_URL}//v2/logout`);
-
+    sessionStorage.removeItem("token");
+    await axios.post(`${import.meta.env.VITE_API_URL}/v2/logout`);
     navigate("/login", { replace: true });
   };
 

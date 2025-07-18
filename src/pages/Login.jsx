@@ -18,18 +18,21 @@ function Login() {
 
   //發出登入 API 請求
   const handleLogin = async () => {
-    const res = await axios.post(
-      `${import.meta.env.VITE_API_URL}/v2/admin/signin`,
-      formData
-    );
-    setLoginError(res.data.success);//是否錯誤
-    const { token } = res.data;
-    if (res.data.success === true) {
-      localStorage.setItem("token", token);//把 token 存在 localStorage，保持登入狀態
-      axios.defaults.headers.common["Authorization"] = token;//把 token 更新到全域，之後打 API 不用再代入 token
-    
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/v2/admin/signin`,
+        formData
+      );
+      setLoginError(res.data.success);//是否錯誤
+      if (res.data.success === true) {
+        const { token } = res.data;
+        sessionStorage.setItem("token", token);//把 token 存在 sessionStorage
+        axios.defaults.headers.common["Authorization"] = token;//更新到全域
+        navigate("/dashboard");//完成登入，連到後台
+      }
+    } catch (err) {
+      setLoginError(false);
     }
-    navigate("/dashboard");//完成登入，連到後台
   };
 
   return (

@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
-export default function useCoupon({ setMessage,odPage, setOdPage }) {
+export default function useOrder({ setMessage, odPage, setOdPage }) {
   const [orderData, setOrderData] = useState([]);//訂單資料
   const [pageInfo, setPageInfo] = useState({ total_pages: 1 });//訂單總頁碼
 
@@ -37,7 +36,8 @@ export default function useCoupon({ setMessage,odPage, setOdPage }) {
   };
 
   //render 出所有產品
-  const fetchOrder =async (p = 1) => {
+  const fetchOrder = useCallback(async (p = 1) => {
+    try {
       p = Math.max(1, p);
       const res = await axios.get(
         `${import.meta.env.VITE_API_URL}/v2/api/${
@@ -49,12 +49,23 @@ export default function useCoupon({ setMessage,odPage, setOdPage }) {
       setOrderData(allProduct);
       setPageInfo(res.data.pagination);
       setOdPage(p);
+    } catch (err) {
+      const msg = err?.response?.data ?? {
+        success: false,
+        message: "無法取得訂單資料",
+      };
+      setMessage((prev) =>
+        prev.success === msg.success && prev.message === msg.message
+          ? prev
+          : { success: msg.success, message: msg.message }
+      );
     }
+  }, [setMessage, setOdPage]);
 
 
   //結束 form 後 render 出產品
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = token;
     fetchOrder(odPage);
   }, [fetchOrder,odPage]);
