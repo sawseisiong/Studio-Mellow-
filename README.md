@@ -1,48 +1,50 @@
-<!-- Banner -->
+# Studio Mellow
 
-<h1 align="center">Studio Mellow 🖼️</h1>
-<p align="center">
-  <strong>插畫電商前後台 • React + Vite + Bootstrap 5</strong><br>
-</p>
+Studio Mellow 是一個以插畫為主題的電商網站，提供前台購物體驗與後台管理功能。專案以 React 19 與 Vite 6 打造。
 
----
 
-## 🚀 線上體驗
+## 線上預覽
 
-| 前台 | 後台 (Dashboard) |
-|------|-----------------|
-| **https://sawseisiong.github.io/Studio-Mellow-/** | **https://sawseisiong.github.io/Studio-Mellow-/login**<br>測試帳號：`testtest@gmail.com`<br>密碼：`testtest123` |
+- 前台：<https://sawseisiong.github.io/Studio-Mellow-/>
+- 後台：<https://sawseisiong.github.io/Studio-Mellow-/login>
+  - 測試帳號：`testtest@gmail.com`
+  - 密碼：`testtest123`
 
-<details>
-<!-- <summary>點我看 Demo GIF / 截圖</summary> -->
+## 專案特色
 
-![產品瀏覽](docs/demo-browse.gif)
-![後台訂單](docs/demo-admin.gif)
+- 使用 Vite 開發，提供快速的熱更新體驗
+- 支援商品瀏覽、加入購物車與結帳流程
+- 後台可管理商品、優惠券與訂單
+- 自訂 Hook 與元件，程式碼維護容易
+- 透過 GitHub Pages 部署，無需額外伺服器
 
-</details>
+## 開發環境建置
 
----
+1. 安裝 Node.js (建議 18 以上)
+2. 下載專案並執行：
 
-## ✨ 特色亮點
-- ⚡ **極速前端**：採用 Vite 6 與 React 19，HMR 秒級更新。
-- 🛒 **完整購物流程**：商品清單 → 加入購物車 → 付款成功。
-- 🎞️ **LottieFiles 載入畫面**：使用 `<dotlottie-player>` 為頁面切換增添流暢 Loading 動畫。
-- 📦 **後台一條龍**：登入後可管理商品、優惠券、訂單。
-- 📱 **RWD＋動效**：Bootstrap 5 + GSAP + AOS，行動裝置同樣流暢。
-- 🔗 **GitHub Pages 零伺服器部署**：一行 `npm run deploy` 即發佈。
-- 🧩 **模組化元件**：React Hooks + Router。
+   ```bash
+   npm install
+   npm run dev
+   ```
 
----
+3. 依照 `.env.example` 建立 `.env` 檔，填入 API_URL 與 API_PATH
 
-## 📂 專案結構（精簡）
+## 打包與部署
+
+- 開發完成後可執行 `npm run build` 打包專案
+- 如需發佈到 GitHub Pages，先確認 `vite.config.js` 中 base 設定，再執行 `npm run deploy`
+
+## 目錄結構 (節錄)
+
 ```text
 Studio-Mellow-
-├── public/           # 靜態資產 & OG 圖
+├── public/           靜態資源
 ├── src/
-│   ├── api/          # axios 呼叫封裝
-│   ├── components/   # 共用 React 元件
-│   ├── pages/        # 前後台頁面
-│   ├── hooks/        # 自訂 hooks（如 useAuth）
-│   └── styles/       # SCSS 與 Bootstrap override
-├── .env.example      # API_ENDPOINT 等環境變數範例
-└── vite.config.js    # Path alias、Gh-pages base
+│   ├── components/   共享 React 元件
+│   ├── pages/        前台與後台頁面
+│   └── stylesheets/  SCSS 與樣式覆寫
+├── .env.example      環境變數範例
+└── vite.config.js    Vite 設定
+```
+
