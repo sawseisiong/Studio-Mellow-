@@ -19,23 +19,21 @@ function Products() {
   } = useFrontProducts();//傳入 product 的 hook
 
   //從 Home 頁面點擊類別商品後，傳入 state
-  const { state } = useLocation();
+  const location = useLocation();
+  const { state } = location;
   const page = state?.page; //分類頁碼
   const category = state?.category; //該分類
 
   const navigate =useNavigate()
 
 
-  //一旦 state 更新，為 fetchCategory 傳入頁碼和分類
+  // 一旦 state 更新就載入指定分類商品
   useEffect(() => {
     if (category) {
       setActive(category);
-      setPdPage(page)
-
-    } else {
-      return;
+      fetchCategory(page || 1, category);
     }
-  }, [page,category]);
+  }, [page, category]);
 
   //點擊下排商品頁碼後，緩慢移動到頂部
   useEffect(() => {
