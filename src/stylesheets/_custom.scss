@@ -1,3 +1,4 @@
+
 //設定圖片保持比例的 Class
 .object-cover {
   object-fit: cover;
@@ -40,7 +41,7 @@ a {
   }
   //完成結帳畫面直版背景圖
   .bg-success {
-    background-image: url("img/success-phone.png");
+    background-image: url("/img/success-phone.png");
     max-width: 100%;
   }
 }
@@ -58,7 +59,7 @@ a {
   }
   //完成結帳畫面橫版背景圖
   .bg-success {
-    background-image: url("img/success.png");
+    background-image: url("/img/success.png");
   }
   .navbar {
     transition: background-color .25s ease, box-shadow .25s ease;

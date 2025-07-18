@@ -33,7 +33,7 @@ function Products() {
 
   //切換頁面時，緩慢移動到頂部
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 300, behavior: "smooth" });
   }, [location]);
 
   return (
