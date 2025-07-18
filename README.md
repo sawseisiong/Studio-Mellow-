@@ -6,9 +6,6 @@ Studio Mellow 是一個以插畫為主題的電商網站，提供前台購物體
 ## 線上預覽
 
 - 前台：<https://sawseisiong.github.io/Studio-Mellow-/>
-- 後台：<https://sawseisiong.github.io/Studio-Mellow-/login>
-  - 測試帳號：`testtest@gmail.com`
-  - 密碼：`testtest123`
 
 ## 專案特色
 
