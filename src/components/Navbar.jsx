@@ -26,13 +26,13 @@ function Navbar({ cardData }) {
     const nav = navRef.current;
 
     ScrollTrigger.create({
-      start:300 ,              
+      start:20 ,              
       onEnter: () =>{
-        nav.classList.add("nav-solid")
+        nav.classList.add("bg-white")
         setLogoColor(false)
       },
       onLeaveBack: () => {
-        nav.classList.remove("nav-solid")
+        nav.classList.remove("bg-white")
         setLogoColor(true)
       },
     });
