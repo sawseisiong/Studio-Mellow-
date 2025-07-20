@@ -146,7 +146,7 @@ function Checkout() {
                   required: "email必填",
                   pattern: {
                     value:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: "僅限有效的 Gmail 帳號",
+                    message: "僅限有效的 email 帳號",
                   },
                 })}
                 placeholder="請輸入email"

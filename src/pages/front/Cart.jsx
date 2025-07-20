@@ -73,19 +73,6 @@ function Cart() {
     }
   };
 
-  // useEffect(()=>{
-  //   const getCoupon =async()=>{
-  //     try{
-  //       const res= await axios.get(`${import.meta.env.VITE_API_URL}/v2/api/${
-  //         import.meta.env.VITE_API_PATH
-  //       }/admin/coupons?page=1`)
-  //       console.log('coupon res',res)
-  //     }catch(err){
-  //       console.log(err)
-  //     }
-  //   }
-
-  // },[])
 
   //載入購物車資料時跑 loading 畫面
   useEffect(() => {
@@ -166,7 +153,7 @@ function Cart() {
                     <tr className="border-bottom border-top" key={item.id}>
                       <th
                         scope="row"
-                        className="border-0 px-0 font-weight-normal py-4"
+                        className="border-0 px-0 font-weight-normal py-4 "
                       >
                         <Link to={`/products/${item.product.id}`}>
                           <img
@@ -174,6 +161,7 @@ function Cart() {
                               item?.product?.imageUrl ||
                               item?.product?.imagesUrl?.[0]
                             }
+                            className="me-3"
                             alt="產品圖片"
                             style={{
                               width: "72px",
@@ -181,7 +169,7 @@ function Cart() {
                               objectFit: "cover",
                             }}
                           />
-                          <p className="mb-0 fw-bold ms-3 d-inline-block">
+                          <p className="mb-0 fw-bold  d-inline-block small">
                             {item.product.title}
                           </p>
                         </Link>

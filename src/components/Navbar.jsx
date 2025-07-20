@@ -13,6 +13,7 @@ function Navbar({ cardData }) {
   const [lastProductId, setLastProductId] = useState(() =>
     localStorage.getItem("lastProductId")
   );
+  const [navClickColor , setNavClickColor] = useState(true)
 
 
 
@@ -22,9 +23,11 @@ function Navbar({ cardData }) {
 
 
   //navbar在滑動往下時變實心白
+  
   useEffect(() => {
     const nav = navRef.current;
-
+    
+    
     ScrollTrigger.create({
       start:20 ,              
       onEnter: () =>{
@@ -40,12 +43,26 @@ function Navbar({ cardData }) {
     return () => ScrollTrigger.kill(); // 離開元件時清掉
   }, []);
 
+  const navClickWhite =()=>{
+    const nav = navRef.current;
+    if(navClickColor === true){
+    nav.classList.add("nav-solid")
+    setLogoColor(false)
+    setNavClickColor(false)
+  }else{
+    nav.classList.remove("nav-solid")
+    setLogoColor(true)
+    setNavClickColor(true)
+  }
+  }
+
 
   return (
     <>
       <nav
       ref={navRef}
         className="navbar navbar-expand-lg navbar-light pe-md-5 ps-md-5 pe-3 ps-3 fixed-top nav-glass bg-gradient"
+        onClick={navClickWhite}
         style={{
           "--bs-gradient":
             "linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,0))",

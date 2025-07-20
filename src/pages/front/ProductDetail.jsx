@@ -239,10 +239,10 @@ function ProductDetail() {
               <div className="col-6">
                 {addMessage && (
                   <p
-                    className="position-absolute text-success"
+                    className="position-absolute text-success px-2"
                     data-aos="fade-up"
                     data-aos-duration="900"
-                    style={{ top: "320px" }}
+                    style={{ top: "320px" , backgroundColor:"white",borderRadius:"12px" }}
                   >
                     已加入購物車
                   </p>
@@ -288,7 +288,7 @@ function ProductDetail() {
                     <div className="card border-0 mb-4 position-relative hover-float">
                       <img
                         src={product.imageUrl || product.imagesUrl?.[0]}
-                        className="card-img-top rounded-0 object-cover mb-3"
+                        className="card-img-top rounded-0 object-cover mb-3 img-media"
                         alt="產品圖片"
                         style={{ height: 350 }}
                         onClick={() => {
