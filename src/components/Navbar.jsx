@@ -13,7 +13,7 @@ function Navbar({ cardData }) {
   const [lastProductId, setLastProductId] = useState(() =>
     localStorage.getItem("lastProductId")
   );
-  const [navClickColor , setNavClickColor] = useState(true)
+  const [navClickColor , setNavClickColor] = useState(false)
 
 
 
@@ -44,16 +44,8 @@ function Navbar({ cardData }) {
   }, []);
 
   const navClickWhite =()=>{
-    const nav = navRef.current;
-    if(navClickColor === true){
-    nav.classList.add("nav-solid")
+    setNavClickColor(pre =>!pre)
     setLogoColor(false)
-    setNavClickColor(false)
-  }else{
-    nav.classList.remove("nav-solid")
-    setLogoColor(true)
-    setNavClickColor(true)
-  }
   }
 
 
@@ -61,8 +53,8 @@ function Navbar({ cardData }) {
     <>
       <nav
       ref={navRef}
-        className="navbar navbar-expand-lg navbar-light pe-md-5 ps-md-5 pe-3 ps-3 fixed-top nav-glass bg-gradient"
-        onClick={navClickWhite}
+        className={`navbar navbar-expand-lg navbar-light pe-md-5 ps-md-5 pe-3 ps-3 fixed-top nav-glass bg-gradient ${navClickColor ? "nav-solid":""} `}
+        
         style={{
           "--bs-gradient":
             "linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,0))",
@@ -94,6 +86,7 @@ function Navbar({ cardData }) {
           aria-controls="navbarNavAltMarkup"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          onClick={navClickWhite}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
