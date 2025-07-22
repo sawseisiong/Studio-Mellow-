@@ -288,7 +288,7 @@ function ProductDetail() {
                     <div className="card border-0 mb-4 position-relative hover-float">
                       <img
                         src={product.imageUrl || product.imagesUrl?.[0]}
-                        className="card-img-top rounded-0 object-cover mb-3 img-media"
+                        className="card-img-top rounded-0 object-cover mb-3 "
                         alt="產品圖片"
                         style={{ height: 350 }}
                         onClick={() => {
