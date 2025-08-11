@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useLocation, useOutletContext } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import axios from "axios";
 
 export default function useProduct({ setMessage,dbPage, setDbPage }) {

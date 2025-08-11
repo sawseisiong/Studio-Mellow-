@@ -18,7 +18,6 @@ function Cart() {
           import.meta.env.VITE_API_PATH
         }/cart/${id}`
       );
-      console.log(res);
       getCart(); //重新取得購物車資料
     } catch (err) {
       console.log(err);
@@ -41,7 +40,6 @@ function Cart() {
         }/cart/${item.id}`,
         data
       );
-      console.log(res);
       getCart(); //重新取得購物車資料
       setIsLoading(false);
     } catch (err) {
@@ -69,7 +67,7 @@ function Cart() {
       setCouponErr(false);
     } catch (err) {
       setCouponErr(true);
-      console.log(err);
+    
     }
   };
 

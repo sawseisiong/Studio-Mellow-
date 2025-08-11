@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useFrontProducts from "./hook/useFrontProducts";
 import IsLoading from "../../components/IsLoading";
 
@@ -110,7 +110,7 @@ function Products() {
                             navigate('.',{replace:true,state:{page:pdCtgPage,category:"場景系列"}})
                           }}
                         >
-                          {console.log("active", active)}
+                         
                           場景系列
                         </button>
                       </li>
@@ -364,7 +364,7 @@ function Products() {
                       }}
                     >
                       {i + 1}
-                      {console.log("i", i)}
+                     
                     </Link>
                   </li>
                 ))}

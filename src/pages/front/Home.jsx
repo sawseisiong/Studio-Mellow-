@@ -73,7 +73,6 @@ function Home() {
                       <img
                         src={`${import.meta.env.BASE_URL}img/logo.png`}
                         alt="logo"
-                        // style={{ height: "250px" }}
                         data-aos="fade-up"
                         data-aos-duration="3000"
                         className="logo-desktop"

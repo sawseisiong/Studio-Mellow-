@@ -54,7 +54,7 @@ function Checkout() {
           import.meta.env.VITE_API_PATH
         }/cart`
       );
-      console.log(res.data.data);
+   
       setOrderList(res.data.data);
       setIsLoading(false)
     } catch (err) {

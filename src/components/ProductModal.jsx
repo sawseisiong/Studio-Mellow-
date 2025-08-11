@@ -131,8 +131,6 @@ function ProductModal({ mode }) {
     }
   };
 
-  // const imageUrl = watch("imageUrl");
-  // const imageFile = watch("imageFile");
 
   //上傳圖片
   const uploadFile = async (e) => {
@@ -239,7 +237,7 @@ function ProductModal({ mode }) {
                     {uploadImage.map((img, i) => {
                       return (
                         <div className="col-6" key={i}>
-                          {console.log("uploadImage", uploadImage)}{" "}
+                          
                           <img
                             src={img}
                             alt={`預覽${i}`}

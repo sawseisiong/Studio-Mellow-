@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import Message from "../../components/Message";
 import IsLoading from "../../components/IsLoading";
 import {
   useParams,
@@ -48,7 +47,7 @@ function ProductDetail() {
       
       getCart(); //更新購物車資料
     } catch (err) {
-      console.log(err);
+
       setCartLoading(false); //恢復 Loading 初始設置
     }
   };
@@ -179,7 +178,7 @@ function ProductDetail() {
                         src={img}
                         className="d-block  object-cover img-media"
                         alt="產品圖片"
-                        // style={{ height: 500, width: 500 }}
+                   
                       />
                     </div>
                   );

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { use, useEffect, useState } from "react";
+import {useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 
@@ -77,7 +77,6 @@ function OrderModal({ mode }) {
       tabIndex="-1"
       id="orderModal"
       aria-labelledby="exampleModalLabel"
-      // aria-hidden='true'
       onClick={handleOverlayClick}
     >
       <form className="modal-dialog modal-lg" onSubmit={handleSubmit(onSubmit)}>

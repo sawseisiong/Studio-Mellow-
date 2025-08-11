@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 
 export default function useCoupon({ setMessage,cpPage, setCpPage  }) {
