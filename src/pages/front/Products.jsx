@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useFrontProducts from "./hook/useFrontProducts";
 import IsLoading from "../../components/IsLoading";
 
-
 function Products() {
   // 讀取路由狀態，若從首頁點分類進來會帶入分類與頁碼
   const location = useLocation();
@@ -20,7 +19,7 @@ function Products() {
     setActive,
     fetchCategory,
     fetchProducts,
-    isLoading
+    isLoading,
   } = useFrontProducts(category, page || 1); // 傳入初始分類與頁碼，避免先載入全部商品
 
   const navigate = useNavigate();
@@ -37,7 +36,7 @@ function Products() {
 
   return (
     <>
-    {isLoading &&<IsLoading />}
+      {isLoading && <IsLoading />}
       <div
         className="position-relative d-flex align-items-center justify-content-center "
         style={{ minHeight: "450px" }}
@@ -49,7 +48,9 @@ function Products() {
             bottom: "0",
             left: "0",
             right: "0",
-            backgroundImage:` url('${import.meta.env.BASE_URL}img/bg-product.png')`,
+            backgroundImage: ` url('${
+              import.meta.env.BASE_URL
+            }img/bg-product.png')`,
             backgroundPosition: "center center",
             opacity: "0.4",
           }}
@@ -72,18 +73,27 @@ function Products() {
               id="accordionExample"
             >
               <div className="card border-0">
-              <div className="d-flex justify-content-between align-items-center pe-1 mb-3" >
-                    <button className="btn btn-primary hover-float" onClick={()=>{fetchCategory(pdCtgPage,"");setActive("")}}><h4 className="mb-0 text-white fs-6 " >全部商品</h4></button>
-                  </div>
+                <div className="d-flex justify-content-between align-items-center pe-1 mb-3">
+                  <button
+                    className="btn btn-primary hover-float"
+                    onClick={() => {
+                      fetchCategory(pdCtgPage, "");
+                      setActive("");
+                    }}
+                  >
+                    <h4 className="mb-0 text-white fs-6 ">全部商品</h4>
+                  </button>
+                </div>
                 <div
                   className="card-header px-0 py-4 bg-white border border-bottom-0 border-top border-start-0 border-end-0 rounded-0"
                   id="headingOne"
                   data-bs-toggle="collapse"
                   data-bs-target="#collapseOne"
                 >
-                  
                   <div className="d-flex justify-content-between align-items-center pe-1">
-                    <button className="btn"><h4 className="mb-0">質感居家</h4></button>
+                    <button className="btn">
+                      <h4 className="mb-0">質感居家</h4>
+                    </button>
                     <i className="fas fa-chevron-down"></i>
                   </div>
                 </div>
@@ -106,10 +116,12 @@ function Products() {
                           onClick={() => {
                             setActive("場景系列");
                             fetchCategory(pdCtgPage, "場景系列");
-                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"場景系列"}})
+                            navigate(".", {
+                              replace: true,
+                              state: { page: pdCtgPage, category: "場景系列" },
+                            });
                           }}
                         >
-                         
                           場景系列
                         </button>
                       </li>
@@ -123,7 +135,10 @@ function Products() {
                           onClick={() => {
                             setActive("3D 系列");
                             fetchCategory(pdCtgPage, "3D 系列");
-                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"3D 系列"}})
+                            navigate(".", {
+                              replace: true,
+                              state: { page: pdCtgPage, category: "3D 系列" },
+                            });
                           }}
                         >
                           3D 系列
@@ -140,7 +155,10 @@ function Products() {
                           onClick={() => {
                             setActive("電繪系列");
                             fetchCategory(pdCtgPage, "電繪系列");
-                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"電繪系列"}})
+                            navigate(".", {
+                              replace: true,
+                              state: { page: pdCtgPage, category: "電繪系列" },
+                            });
                           }}
                         >
                           電繪系列
@@ -158,7 +176,9 @@ function Products() {
                   data-bs-target="#collapseTwo"
                 >
                   <div className="d-flex justify-content-between align-items-center pe-1">
-                  <button className="btn"><h4 className="mb-0">暖心好禮</h4></button>
+                    <button className="btn">
+                      <h4 className="mb-0">暖心好禮</h4>
+                    </button>
                     <i className="fas fa-chevron-down"></i>
                   </div>
                 </div>
@@ -181,7 +201,13 @@ function Products() {
                           onClick={() => {
                             setActive("明信片系列");
                             fetchCategory(pdCtgPage, "明信片系列");
-                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"明信片系列"}})
+                            navigate(".", {
+                              replace: true,
+                              state: {
+                                page: pdCtgPage,
+                                category: "明信片系列",
+                              },
+                            });
                           }}
                         >
                           明信片系列
@@ -198,7 +224,10 @@ function Products() {
                           onClick={() => {
                             setActive("手繪系列");
                             fetchCategory(pdCtgPage, "手繪系列");
-                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"手繪系列"}})
+                            navigate(".", {
+                              replace: true,
+                              state: { page: pdCtgPage, category: "手繪系列" },
+                            });
                           }}
                         >
                           手繪系列
@@ -215,7 +244,10 @@ function Products() {
                           onClick={() => {
                             setActive("水果系列");
                             fetchCategory(pdCtgPage, "水果系列");
-                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"水果系列"}})
+                            navigate(".", {
+                              replace: true,
+                              state: { page: pdCtgPage, category: "水果系列" },
+                            });
                           }}
                         >
                           水果系列
@@ -233,7 +265,9 @@ function Products() {
                   data-bs-target="#collapseThree"
                 >
                   <div className="d-flex justify-content-between align-items-center pe-1">
-                  <button  className="btn"><h4 className="mb-0">親子童趣</h4></button>
+                    <button className="btn">
+                      <h4 className="mb-0">親子童趣</h4>
+                    </button>
                     <i className="fas fa-chevron-down"></i>
                   </div>
                 </div>
@@ -256,7 +290,10 @@ function Products() {
                           onClick={() => {
                             setActive("動物系列");
                             fetchCategory(pdCtgPage, "動物系列");
-                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"動物系列"}})
+                            navigate(".", {
+                              replace: true,
+                              state: { page: pdCtgPage, category: "動物系列" },
+                            });
                           }}
                         >
                           動物系列
@@ -273,7 +310,10 @@ function Products() {
                           onClick={() => {
                             setActive("繪本系列");
                             fetchCategory(pdCtgPage, "繪本系列");
-                            navigate('.',{replace:true,state:{page:pdCtgPage,category:"繪本系列"}})
+                            navigate(".", {
+                              replace: true,
+                              state: { page: pdCtgPage, category: "繪本系列" },
+                            });
                           }}
                         >
                           繪本系列
@@ -304,15 +344,15 @@ function Products() {
                         <img
                           src={product.imageUrl || product.imagesUrl?.[0]}
                           className="card-img-top rounded-0 object-cover "
-                          style={{ height: 400}}
+                          style={{ height: 400 }}
                           alt="產品圖片"
                         />
-                       
-                          <i
-                            className="far fa-heart position-absolute"
-                            style={{ right: "16px", top: "16px" }}
-                          ></i>
-                       
+
+                        <i
+                          className="far fa-heart position-absolute"
+                          style={{ right: "16px", top: "16px" }}
+                        ></i>
+
                         <div className="card-body p-0">
                           <h4 className="mb-0 mt-3">{product.title}</h4>
                           <p className="card-text mb-0">
@@ -330,7 +370,7 @@ function Products() {
               <ul className="pagination">
                 <li className={`page-item ${pdPage === 1 ? "disabled" : ""}`}>
                   <Link
-                    to={`?page=${pdPage - 1}`}//上一頁
+                    to={`?page=${pdPage - 1}`} //上一頁
                     className="page-link"
                     href="/"
                     aria-label="Previous"
@@ -346,33 +386,37 @@ function Products() {
                   </Link>
                 </li>
 
-                {[...Array(pageInfo)].map((_, i) => ( //總頁碼數
-                  <li className="page-item" key={`${i}_page`}>
-                    <Link
-                      to={`?page=${i + 1}`}
-                      className={`page-link ${
-                        pdPage === i + 1 ? "active" : ""
-                      }`}
-                      href="/"
-                      onClick={() => {
-                        if (active) {
-                          fetchCategory(i + 1);
-                        } else {
-                          fetchProducts(i + 1);
-                        }
-                      }}
-                    >
-                      {i + 1}
-                     
-                    </Link>
-                  </li>
-                ))}
+                {[...Array(pageInfo)].map(
+                  (
+                    _,
+                    i //總頁碼數
+                  ) => (
+                    <li className="page-item" key={`${i}_page`}>
+                      <Link
+                        to={`?page=${i + 1}`}
+                        className={`page-link ${
+                          pdPage === i + 1 ? "active" : ""
+                        }`}
+                        href="/"
+                        onClick={() => {
+                          if (active) {
+                            fetchCategory(i + 1);
+                          } else {
+                            fetchProducts(i + 1);
+                          }
+                        }}
+                      >
+                        {i + 1}
+                      </Link>
+                    </li>
+                  )
+                )}
                 <li
                   className={`page-item ${
                     pdPage === pageInfo.total_pages ? "disabled" : ""
                   }`}
                 >
-                  <Link 
+                  <Link
                     to={`?page=${pdPage + 1}`} //下一頁
                     className="page-link"
                     href="/"

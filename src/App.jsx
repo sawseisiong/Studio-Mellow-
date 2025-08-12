@@ -18,7 +18,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 function App() {
-
   AOS.init(); //初始化 AOS 套件
 
   return (

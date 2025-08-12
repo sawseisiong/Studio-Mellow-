@@ -17,9 +17,9 @@ function ProductDetail() {
   const [productsData, setProductData] = useState({}); //產品資料
   const [allProductsData, setAllProductsData] = useState([]); //底下產品輪播圖 資料列
   const [cartQuantity, setCartQuantity] = useState(1); //加入購物車數量
-  const [cartLoading, setCartLoading] = useState(false);//加入購物車 Loading
+  const [cartLoading, setCartLoading] = useState(false); //加入購物車 Loading
   const [isLoading, setIsLoading] = useState(false); //載入 API Loading
-  const [addMessage, setAddedMessage] = useState(false);//出現加入購物車字樣
+  const [addMessage, setAddedMessage] = useState(false); //出現加入購物車字樣
   const { id } = useParams(); //從產品頁傳入的產品 id
   const swiperRef = useRef(null);
   Swiper.use([Autoplay, Navigation]);
@@ -43,24 +43,22 @@ function ProductDetail() {
         data
       );
       setCartLoading(false); //解除 Loading 時間
-     
-      
-      getCart(); //更新購物車資料
-    } catch{
 
+      getCart(); //更新購物車資料
+    } catch {
       setCartLoading(false); //恢復 Loading 初始設置
     }
   };
 
   //取出當前頁的產品｜資訊｜圖片
   const fetchProducts = async (id) => {
-    setIsLoading(true)
+    setIsLoading(true);
     const res = await axios.get(
       `${import.meta.env.VITE_API_URL}/v2/api/${
         import.meta.env.VITE_API_PATH
       }/product/${id}`
     );
-    setIsLoading(false)
+    setIsLoading(false);
     const product = res?.data?.product ?? {};
     setProductData(product);
   };
@@ -120,16 +118,16 @@ function ProductDetail() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [id]);
 
-  useEffect(()=>{
-    if (!addMessage) return
-    const timer=  setTimeout(()=>setAddedMessage(false),1300)
-    return()=>clearTimeout(timer)
-  },[addMessage])
+  useEffect(() => {
+    if (!addMessage) return;
+    const timer = setTimeout(() => setAddedMessage(false), 1300);
+    return () => clearTimeout(timer);
+  }, [addMessage]);
 
   return (
     <>
       {/* <Message message={message} setMessage={setMessage} /> */}
-      {isLoading && <IsLoading/>}
+      {isLoading && <IsLoading />}
       <div className="mt-5 mx-5 pt-5 ">
         <div className="row align-items-center">
           <div className="col-md-7">
@@ -178,7 +176,6 @@ function ProductDetail() {
                         src={img}
                         className="d-block  object-cover img-media"
                         alt="產品圖片"
-                   
                       />
                     </div>
                   );
@@ -241,7 +238,11 @@ function ProductDetail() {
                     className="position-absolute text-success px-2"
                     data-aos="fade-up"
                     data-aos-duration="900"
-                    style={{ top: "320px" , backgroundColor:"white",borderRadius:"12px" }}
+                    style={{
+                      top: "320px",
+                      backgroundColor: "white",
+                      borderRadius: "12px",
+                    }}
                   >
                     已加入購物車
                   </p>

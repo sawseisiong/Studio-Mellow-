@@ -1,6 +1,6 @@
-import { NavLink, useLocation  } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { useEffect, useState ,useRef} from "react";
+import { useEffect, useState, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
@@ -8,53 +8,49 @@ gsap.registerPlugin(ScrollTrigger);
 function Navbar({ cardData }) {
   //抓到最後一次商品到id，並在點擊 detail 分頁的時候，到該產品分頁
   const location = useLocation();
-  const navRef   = useRef(null);
-  const [logoColor , setLogoColor] =useState(true)
+  const navRef = useRef(null);
+  const [logoColor, setLogoColor] = useState(true);
   const [lastProductId, setLastProductId] = useState(() =>
     localStorage.getItem("lastProductId")
   );
-  const [navClickColor , setNavClickColor] = useState(false)
-
-
+  const [navClickColor, setNavClickColor] = useState(false);
 
   useEffect(() => {
     setLastProductId(localStorage.getItem("lastProductId"));
   }, [location]);
 
-
   //navbar在滑動往下時變實心白
-  
+
   useEffect(() => {
     const nav = navRef.current;
-    
-    
+
     ScrollTrigger.create({
-      start:20 ,              
-      onEnter: () =>{
-        nav.classList.add("bg-white")
-        setLogoColor(false)
+      start: 20,
+      onEnter: () => {
+        nav.classList.add("bg-white");
+        setLogoColor(false);
       },
       onLeaveBack: () => {
-        nav.classList.remove("bg-white")
-        setLogoColor(true)
+        nav.classList.remove("bg-white");
+        setLogoColor(true);
       },
     });
 
     return () => ScrollTrigger.kill(); // 離開元件時清掉
   }, []);
 
-  const navClickWhite =()=>{
-    setNavClickColor(pre =>!pre)
-    setLogoColor(false)
-  }
-
+  const navClickWhite = () => {
+    setNavClickColor((pre) => !pre);
+    setLogoColor(false);
+  };
 
   return (
     <>
       <nav
-      ref={navRef}
-        className={`navbar navbar-expand-lg navbar-light pe-md-5 ps-md-5 pe-3 ps-3 fixed-top nav-glass bg-gradient ${navClickColor ? "nav-solid":""} `}
-        
+        ref={navRef}
+        className={`navbar navbar-expand-lg navbar-light pe-md-5 ps-md-5 pe-3 ps-3 fixed-top nav-glass bg-gradient ${
+          navClickColor ? "nav-solid" : ""
+        } `}
         style={{
           "--bs-gradient":
             "linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,0))",
@@ -65,7 +61,9 @@ function Navbar({ cardData }) {
           className="navbar-brand hover-float"
           style={({ isActive }) => ({
             backgroundImage: isActive
-              ? `url(${import.meta.env.BASE_URL}img/logo-${logoColor?'white':'black'}.png)`
+              ? `url(${import.meta.env.BASE_URL}img/logo-${
+                  logoColor ? "white" : "black"
+                }.png)`
               : `url(${import.meta.env.BASE_URL}img/logo-black.png)`,
             height: 60,
             width: 150,

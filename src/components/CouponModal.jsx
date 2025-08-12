@@ -49,9 +49,10 @@ function CouponModal({ mode }) {
       ...data,
       is_enabled: Number(data.is_enabled),
       percent: Number(data.percent),
-      due_date: Math.floor(new Date(data.due_date).getTime() / 1000),//調整日期格式
+      due_date: Math.floor(new Date(data.due_date).getTime() / 1000), //調整日期格式
     };
-    if (mode === "edit") {//判斷是不是編輯
+    if (mode === "edit") {
+      //判斷是不是編輯
       try {
         const res = await axios.put(
           `${import.meta.env.VITE_API_URL}/v2/api/${
@@ -75,7 +76,8 @@ function CouponModal({ mode }) {
       }
       navigate(`/dashboard/coupon-list?page=${cpPage}`);
     } else {
-      try {//更新優惠券資料
+      try {
+        //更新優惠券資料
         const res = await axios.post(
           `${import.meta.env.VITE_API_URL}/v2/api/${
             import.meta.env.VITE_API_PATH

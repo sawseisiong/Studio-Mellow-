@@ -1,21 +1,16 @@
 import axios from "axios";
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 
 function OrderModal({ mode }) {
   const { fetchOrder } = useOutletContext();
-  const [isPaid, setPaid] = useState(undefined);//is_paid 打勾的訊息
+  const [isPaid, setPaid] = useState(undefined); //is_paid 打勾的訊息
   const navigate = useNavigate();
   const { state } = useLocation();
   const order = state?.order || {};
-  const [status, setStatus] = useState(0);//運送進度
-  const {
-    handleSubmit,
-    reset,
-  } = useForm({});
-
-
+  const [status, setStatus] = useState(0); //運送進度
+  const { handleSubmit, reset } = useForm({});
 
   //點擊 form 外圍，關閉表單
   const handleOverlayClick = (e) => {
@@ -51,8 +46,8 @@ function OrderModal({ mode }) {
         { data: payload }
       );
       await fetchOrder();
-      navigate(-1);//關閉表單
-    } catch  {
+      navigate(-1); //關閉表單
+    } catch {
       alert("系統發生錯誤，請稍後再試");
     }
   };

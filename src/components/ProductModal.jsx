@@ -1,15 +1,16 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useNavigate, useLocation  ,useOutletContext} from "react-router-dom";
+import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function ProductModal({ mode }) {
   const [uploadImage, setUploadImage] = useState([]); //上傳圖片後出現小圖示預覽
   const { state } = useLocation(); //從上個頁面夾帶資料
-  const [remoteImages, setRemoteImages] = useState( //上傳圖片到後端的 State
+  const [remoteImages, setRemoteImages] = useState(
+    //上傳圖片到後端的 State
     state?.product?.imagesUrl || []
   );
-  const { dbPage, setDbPage,setMessage } = useOutletContext();
+  const { dbPage, setDbPage, setMessage } = useOutletContext();
 
   //產品類別分類
   const categories = [
@@ -28,7 +29,6 @@ function ProductModal({ mode }) {
     handleSubmit,
     formState: { errors },
     reset,
-
   } = useForm({
     defaultValues: {
       title: "",
@@ -48,7 +48,8 @@ function ProductModal({ mode }) {
 
   //編輯商品，自動填入商品信息
   useEffect(() => {
-    if (mode === "edit" && state?.product) { //判斷是不是在編輯模式
+    if (mode === "edit" && state?.product) {
+      //判斷是不是在編輯模式
       reset(state.product);
       setUploadImage(state.product.imagesUrl || []);
     }
@@ -56,10 +57,11 @@ function ProductModal({ mode }) {
 
   //發送表單打 API
   const onSubmit = async (data) => {
-    const enabled = data.is_enabled ? 1 : 0;//寫入 1 或 0（後端只認得這個）
+    const enabled = data.is_enabled ? 1 : 0; //寫入 1 或 0（後端只認得這個）
 
     const payload = { ...data, imagesUrl: remoteImages, is_enabled: enabled };
-    if (mode === "edit") {//若編輯模式，則 put 
+    if (mode === "edit") {
+      //若編輯模式，則 put
       try {
         const res = await axios.put(
           `${import.meta.env.VITE_API_URL}/v2/api/${
@@ -67,7 +69,7 @@ function ProductModal({ mode }) {
           }/admin/product/${state.product.id}`,
           { data: payload }
         );
-        
+
         //顯示更新成功的 Message
         const msg = res.data;
         setMessage((prev) =>
@@ -87,7 +89,8 @@ function ProductModal({ mode }) {
       navigate(`/dashboard?page=${dbPage}`); //更新後回到當前頁面
     } else {
       try {
-        const res = await axios.post( //新增商品
+        const res = await axios.post(
+          //新增商品
           `${import.meta.env.VITE_API_URL}/v2/api/${
             import.meta.env.VITE_API_PATH
           }/admin/product`,
@@ -111,13 +114,12 @@ function ProductModal({ mode }) {
         );
       }
 
-      reset();//更新完後重置表單
-      setDbPage(1);//回道頁碼 1
+      reset(); //更新完後重置表單
+      setDbPage(1); //回道頁碼 1
       navigate(`/dashboard?page=${dbPage}`); //更新後回到第一頁
     }
   };
 
- 
   //關閉表單
   const closeForm = () => {
     navigate(-1);
@@ -130,10 +132,9 @@ function ProductModal({ mode }) {
     }
   };
 
-
   //上傳圖片
   const uploadFile = async (e) => {
-    const file = e.target.files?.[0];//取得使用者選中的第一個檔案（多檔上傳就只拿第一個）
+    const file = e.target.files?.[0]; //取得使用者選中的第一個檔案（多檔上傳就只拿第一個）
     if (!file) return;
     if (!file.type.startsWith("image/")) {
       setMessage({ success: false, message: "僅能上傳圖片檔" });
@@ -144,10 +145,10 @@ function ProductModal({ mode }) {
       return;
     }
 
-    const fd = new FormData();//用 FormData 打包檔案
-    fd.append("file-to-upload", file);//加入資料
+    const fd = new FormData(); //用 FormData 打包檔案
+    fd.append("file-to-upload", file); //加入資料
 
-    const localURL = URL.createObjectURL(file);//先用 URL.createObjectURL 生成「本機預覽用 URL」
+    const localURL = URL.createObjectURL(file); //先用 URL.createObjectURL 生成「本機預覽用 URL」
     setUploadImage((pre) => [...pre, localURL]);
 
     try {
@@ -158,8 +159,8 @@ function ProductModal({ mode }) {
         fd
       );
       const remoteUrl = res.data.imageUrl;
-      setRemoteImages([...remoteImages, remoteUrl]);//上傳圖片
-    } catch  {
+      setRemoteImages([...remoteImages, remoteUrl]); //上傳圖片
+    } catch {
       setMessage({ success: false, message: "上傳失敗" });
     }
   };
@@ -236,7 +237,6 @@ function ProductModal({ mode }) {
                     {uploadImage.map((img, i) => {
                       return (
                         <div className="col-6" key={i}>
-                          
                           <img
                             src={img}
                             alt={`預覽${i}`}

@@ -19,7 +19,7 @@ function Cart() {
         }/cart/${id}`
       );
       getCart(); //重新取得購物車資料
-    } catch{
+    } catch {
       alert("系統發生錯誤，請稍後再試");
     }
   };
@@ -34,7 +34,7 @@ function Cart() {
           qty: qty,
         },
       };
-       await axios.put(
+      await axios.put(
         `${import.meta.env.VITE_API_URL}/v2/api/${
           import.meta.env.VITE_API_PATH
         }/cart/${item.id}`,
@@ -67,10 +67,8 @@ function Cart() {
       setCouponErr(false);
     } catch {
       setCouponErr(true);
-    
     }
   };
-
 
   //載入購物車資料時跑 loading 畫面
   useEffect(() => {
@@ -239,7 +237,7 @@ function Cart() {
                 placeholder="輸入優惠券 SXEK"
                 aria-label="Recipient's username"
                 aria-describedby="button-addon2"
-                defaultValue={txtCoupon}   
+                defaultValue={txtCoupon}
                 onBlur={handleCouponInput}
               />
               <div className="input-group-append">
@@ -257,9 +255,7 @@ function Cart() {
                 </button>
               </div>
             </div>
-            {couponErr && (
-              <span className="text-danger small">無此優惠碼</span>
-            )}
+            {couponErr && <span className="text-danger small">無此優惠碼</span>}
           </div>
           <div className="col-md-4">
             <div className="border p-4 mb-4">

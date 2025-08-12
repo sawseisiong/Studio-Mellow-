@@ -1,10 +1,10 @@
-import {  useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [formData, setFormData] = useState({ username: "", password: "" });//初始化姓名和密碼
-  const [loginError, setLoginError] = useState(true);//設置登入錯誤訊息
+  const [formData, setFormData] = useState({ username: "", password: "" }); //初始化姓名和密碼
+  const [loginError, setLoginError] = useState(true); //設置登入錯誤訊息
   const navigate = useNavigate();
 
   //更新登入資訊
@@ -23,12 +23,12 @@ function Login() {
         `${import.meta.env.VITE_API_URL}/v2/admin/signin`,
         formData
       );
-      setLoginError(res.data.success);//是否錯誤
+      setLoginError(res.data.success); //是否錯誤
       if (res.data.success === true) {
         const { token } = res.data;
-        sessionStorage.setItem("token", token);//把 token 存在 sessionStorage
-        axios.defaults.headers.common["Authorization"] = token;//更新到全域
-        navigate("/dashboard");//完成登入，連到後台
+        sessionStorage.setItem("token", token); //把 token 存在 sessionStorage
+        axios.defaults.headers.common["Authorization"] = token; //更新到全域
+        navigate("/dashboard"); //完成登入，連到後台
       }
     } catch (err) {
       setLoginError(false);

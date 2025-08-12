@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate,useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import IsLoading from "../../components/IsLoading";
 
 function Checkout() {
-  const [orderList, setOrderList] = useState([]);//訂單資料
-  const { setCartData } = useOutletContext();//設置購物車資料
+  const [orderList, setOrderList] = useState([]); //訂單資料
+  const { setCartData } = useOutletContext(); //設置購物車資料
   const [isLoading, setIsLoading] = useState(false); //載入 API Loading
 
   const {
@@ -31,33 +31,32 @@ function Checkout() {
       },
     };
     try {
-       await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_API_URL}/v2/api/${
           import.meta.env.VITE_API_PATH
         }/order`,
         data
       );
-      await setCartData({});//完成結帳後清空購物車資料
-      navigate("/success", { replace: true });//導到結帳完成頁面
-    } catch  {
+      await setCartData({}); //完成結帳後清空購物車資料
+      navigate("/success", { replace: true }); //導到結帳完成頁面
+    } catch {
       alert("系統發生錯誤，請稍後再試");
     }
   };
 
-
   //顯示訂購產品數
   const orderItems = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       const res = await axios.get(
         `${import.meta.env.VITE_API_URL}/v2/api/${
           import.meta.env.VITE_API_PATH
         }/cart`
       );
-   
+
       setOrderList(res.data.data);
-      setIsLoading(false)
-    } catch  {
+      setIsLoading(false);
+    } catch {
       alert("系統發生錯誤，請稍後再試");
     }
   };
@@ -68,13 +67,13 @@ function Checkout() {
 
   return (
     <>
-    {isLoading &&<IsLoading/>}
+      {isLoading && <IsLoading />}
       <div className="row justify-content-center pt-5 mt-5 mx-3 mb-3">
         <div className="col-md-10">
           <h3 className="fw-bold mb-1 pt-3">結帳資訊 / 完成您的訂單</h3>
         </div>
       </div>
-      <div className="row flex-row-reverse justify-content-center pb-5 mb-5 mx-3" >
+      <div className="row flex-row-reverse justify-content-center pb-5 mb-5 mx-3">
         <div className="col-md-4">
           <div className="border p-4 mb-4">
             {orderList?.carts?.map((order) => {
@@ -89,7 +88,7 @@ function Checkout() {
                     style={{
                       width: "48px",
                       height: "48px",
-                      objectFit: "cover",//保持比例，填滿容器
+                      objectFit: "cover", //保持比例，填滿容器
                     }}
                   />
                   <div className="w-100">
@@ -145,7 +144,7 @@ function Checkout() {
                 {...register("email", {
                   required: "email必填",
                   pattern: {
-                    value:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                     message: "僅限有效的 email 帳號",
                   },
                 })}

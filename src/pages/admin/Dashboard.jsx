@@ -1,7 +1,7 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import Message from "../../components/Message";
 import axios from "axios";
-import { useEffect ,useState} from "react";
+import { useEffect, useState } from "react";
 
 function Dashboard() {
   const navigate = useNavigate();
