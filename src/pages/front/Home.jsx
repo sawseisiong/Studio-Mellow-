@@ -3,35 +3,30 @@ import "react-slideshow-image/dist/styles.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
   const imgs = ["img/pp4.jpg", "img/pp5.jpg", "img/pp6.jpg"];
 
-  const navigate = useNavigate();
-
   //水果列上的商品動畫
   useEffect(() => {
-    let sections = gsap.utils.toArray(".imgSmall");//初始化：把所有 .imgSmall 元素抓成陣列
+    let sections = gsap.utils.toArray(".imgSmall"); //初始化：把所有 .imgSmall 元素抓成陣列
 
     //建立橫向捲動動畫
     gsap.to(sections, {
       xPercent: -100 * (sections.length - 1),
-      ease: "none",//線性移動，沒有加速或減速
+      ease: "none", //線性移動，沒有加速或減速
       scrollTrigger: {
-        trigger: ".containerImg",//元素捲到 containerImg 畫面時開始觸發
-        start: "top center",//何時開始：當 trigger 的「頂端」碰到視窗「正中央」
-        scrub: 1,//1 秒平滑緩衝
+        trigger: ".containerImg", //元素捲到 containerImg 畫面時開始觸發
+        start: "top center", //何時開始：當 trigger 的「頂端」碰到視窗「正中央」
+        scrub: 1, //1 秒平滑緩衝
         snap: 1 / (sections.length - 1),
 
-        end: () => "+=" + document.querySelector(".containerImg").offsetWidth,//動畫結束的位置 ｜+= 再往下捲一個容器寬，捲動就走完整段動畫
+        end: () => "+=" + document.querySelector(".containerImg").offsetWidth, //動畫結束的位置 ｜+= 再往下捲一個容器寬，捲動就走完整段動畫
       },
     });
   }, []);
-
-
-  
 
   //到首頁後，緩慢移動到頂部
   useEffect(() => {
@@ -42,8 +37,8 @@ function Home() {
     <>
       <div className="position-relative ">
         <Fade
-          duration={4000}//4秒 切換一次
-          transitionDuration={1000}//切換速度 1秒
+          duration={4000} //4秒 切換一次
+          transitionDuration={1000} //切換速度 1秒
           easing="ease"
           arrows={false} //無箭頭
           pauseOnHover={false}
@@ -53,7 +48,7 @@ function Home() {
               <div
                 className="container d-flex flex-column "
                 key={i}
-                style={{ minHeight: "100vh" }}//整個螢幕
+                style={{ minHeight: "100vh" }} //整個螢幕
               >
                 <div
                   className="position-absolute d-flex justify-content-center align-items-center"
@@ -62,10 +57,10 @@ function Home() {
                     bottom: "0",
                     left: "0",
                     right: "0",
-                    backgroundRepeat: "no-repeat",//圖片無重複
-                    backgroundSize: "cover",//填滿
+                    backgroundRepeat: "no-repeat", //圖片無重複
+                    backgroundSize: "cover", //填滿
                     backgroundImage: `url(${import.meta.env.BASE_URL}${img})`,
-                    backgroundPosition: "center center",//中央
+                    backgroundPosition: "center center", //中央
                   }}
                 >
                   <div className="row justify-content-center my-auto ">
@@ -152,7 +147,7 @@ function Home() {
               state={{ page: 1, category: "手繪系列" }}
             >
               <div className="card border-0 mb-4">
-                <div style={{ height: 300}}>
+                <div style={{ height: 300 }}>
                   <img
                     src={`${import.meta.env.BASE_URL}img/handDrawn.jpg`}
                     className="card-img-top rounded-0 w-100 h-100 object-fit-cover shadow hover-float"
@@ -195,49 +190,49 @@ function Home() {
                     className=" imgSmall"
                     src={`${import.meta.env.BASE_URL}img/lemon.png`}
                     alt="水果插畫"
-                    style={{ transform: "translateX(150px)" ,height:250}} //設定高度，響應式不變形
+                    style={{ transform: "translateX(150px)", height: 250 }} //設定高度，響應式不變形
                   />
                   <img
                     className="imgSmall"
                     src={`${import.meta.env.BASE_URL}img/orange.png`}
                     alt="水果插畫"
-                    style={{ transform: "translateX(250px)" ,height:250}}
+                    style={{ transform: "translateX(250px)", height: 250 }}
                   />
                   <img
                     className="imgSmall"
                     src={`${import.meta.env.BASE_URL}img/mango.png`}
                     alt="水果插畫"
-                    style={{ transform: "translateX(350px)",height:250 }}
+                    style={{ transform: "translateX(350px)", height: 250 }}
                   />
                   <img
                     className="imgSmall"
                     src={`${import.meta.env.BASE_URL}img/pomelo.png`}
                     alt="水果插畫"
-                    style={{ transform: "translateX(450px)" ,height:250}}
+                    style={{ transform: "translateX(450px)", height: 250 }}
                   />
                   <img
                     className="imgSmall"
                     src={`${import.meta.env.BASE_URL}img/roselle.png`}
                     alt="水果插畫"
-                    style={{ transform: "translateX(550px)" ,height:250}}
+                    style={{ transform: "translateX(550px)", height: 250 }}
                   />
                   <img
                     className="imgSmall"
                     src={`${import.meta.env.BASE_URL}img/tomato.png`}
                     alt="水果插畫"
-                    style={{ transform: "translateX(650px)" ,height:250}}
+                    style={{ transform: "translateX(650px)", height: 250 }}
                   />
                   <img
                     className="imgSmall"
                     src={`${import.meta.env.BASE_URL}img/strawberry.png`}
                     alt="水果插畫"
-                    style={{ transform: "translateX(750px)" ,height:250}}
+                    style={{ transform: "translateX(750px)", height: 250 }}
                   />
                   <img
                     className="imgSmall"
                     src={`${import.meta.env.BASE_URL}img/love-fruit.png`}
                     alt="水果插畫"
-                    style={{ transform: "translateX(850px)" ,height:250}}
+                    style={{ transform: "translateX(850px)", height: 250 }}
                   />
                 </div>
               </div>

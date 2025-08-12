@@ -27,7 +27,6 @@ function ProductModal({ mode }) {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
     reset,
 
   } = useForm({
@@ -160,7 +159,7 @@ function ProductModal({ mode }) {
       );
       const remoteUrl = res.data.imageUrl;
       setRemoteImages([...remoteImages, remoteUrl]);//上傳圖片
-    } catch (err) {
+    } catch  {
       setMessage({ success: false, message: "上傳失敗" });
     }
   };

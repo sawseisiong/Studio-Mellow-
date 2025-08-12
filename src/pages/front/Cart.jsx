@@ -13,13 +13,13 @@ function Cart() {
   //移除購物車商品
   const removeCart = async (id) => {
     try {
-      const res = await axios.delete(
+      await axios.delete(
         `${import.meta.env.VITE_API_URL}/v2/api/${
           import.meta.env.VITE_API_PATH
         }/cart/${id}`
       );
       getCart(); //重新取得購物車資料
-    } catch (err) {
+    } catch{
       alert("系統發生錯誤，請稍後再試");
     }
   };
@@ -34,7 +34,7 @@ function Cart() {
           qty: qty,
         },
       };
-      const res = await axios.put(
+       await axios.put(
         `${import.meta.env.VITE_API_URL}/v2/api/${
           import.meta.env.VITE_API_PATH
         }/cart/${item.id}`,
@@ -42,13 +42,13 @@ function Cart() {
       );
       getCart(); //重新取得購物車資料
       setIsLoading(false);
-    } catch (err) {
+    } catch {
       alert("系統發生錯誤，請稍後再試");
     }
   };
 
   //使用優惠券
-  const useCoupon = async (cou) => {
+  const applyCoupon = async (cou) => {
     try {
       const data = {
         data: {
@@ -65,7 +65,7 @@ function Cart() {
       setCoupon(res);
       getCart(); //重新取得購物車資料
       setCouponErr(false);
-    } catch (err) {
+    } catch {
       setCouponErr(true);
     
     }
@@ -248,7 +248,7 @@ function Cart() {
                   type="button"
                   id="button-addon2"
                   onClick={() => {
-                    useCoupon(txtCoupon);
+                    applyCoupon(txtCoupon);
                   }}
                 >
                   <div className="bounce-loop">

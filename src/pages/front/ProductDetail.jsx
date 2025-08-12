@@ -23,7 +23,7 @@ function ProductDetail() {
   const { id } = useParams(); //從產品頁傳入的產品 id
   const swiperRef = useRef(null);
   Swiper.use([Autoplay, Navigation]);
-  const { getCart, setMessage } = useOutletContext(); //傳入 更新購物車函式｜訊息通知
+  const { getCart } = useOutletContext(); //傳入 更新購物車函式｜訊息通知
   const navigation = useNavigate();
 
   //加入購物車
@@ -36,17 +36,17 @@ function ProductDetail() {
     };
     setCartLoading(true); //設置 Loading 時間
     try {
-      const res = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_API_URL}/v2/api/${
           import.meta.env.VITE_API_PATH
         }/cart`,
         data
       );
       setCartLoading(false); //解除 Loading 時間
-      const msg = res.data; // 傳入新增購物車商品成功 訊息
+     
       
       getCart(); //更新購物車資料
-    } catch (err) {
+    } catch{
 
       setCartLoading(false); //恢復 Loading 初始設置
     }

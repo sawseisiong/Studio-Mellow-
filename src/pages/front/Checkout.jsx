@@ -31,7 +31,7 @@ function Checkout() {
       },
     };
     try {
-      const res = await axios.post(
+       await axios.post(
         `${import.meta.env.VITE_API_URL}/v2/api/${
           import.meta.env.VITE_API_PATH
         }/order`,
@@ -39,14 +39,14 @@ function Checkout() {
       );
       await setCartData({});//完成結帳後清空購物車資料
       navigate("/success", { replace: true });//導到結帳完成頁面
-    } catch (err) {
+    } catch  {
       alert("系統發生錯誤，請稍後再試");
     }
   };
 
 
   //顯示訂購產品數
-  const orderItems = async (item) => {
+  const orderItems = async () => {
     setIsLoading(true)
     try {
       const res = await axios.get(
@@ -57,7 +57,7 @@ function Checkout() {
    
       setOrderList(res.data.data);
       setIsLoading(false)
-    } catch (err) {
+    } catch  {
       alert("系統發生錯誤，請稍後再試");
     }
   };

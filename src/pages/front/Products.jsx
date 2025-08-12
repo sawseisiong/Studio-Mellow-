@@ -13,7 +13,6 @@ function Products() {
 
   const {
     productsData,
-    setPdPage,
     pdPage,
     pdCtgPage,
     pageInfo,
@@ -104,7 +103,7 @@ function Products() {
                             color:
                               active === "場景系列" ? "#e26d5a" : "#B8B8B8",
                           }}
-                          onClick={(e) => {
+                          onClick={() => {
                             setActive("場景系列");
                             fetchCategory(pdCtgPage, "場景系列");
                             navigate('.',{replace:true,state:{page:pdCtgPage,category:"場景系列"}})
@@ -121,7 +120,7 @@ function Products() {
                           style={{
                             color: active === "3D 系列" ? "#e26d5a" : "#B8B8B8",
                           }}
-                          onClick={(e) => {
+                          onClick={() => {
                             setActive("3D 系列");
                             fetchCategory(pdCtgPage, "3D 系列");
                             navigate('.',{replace:true,state:{page:pdCtgPage,category:"3D 系列"}})
@@ -138,7 +137,7 @@ function Products() {
                             color:
                               active === "電繪系列" ? "#e26d5a" : "#B8B8B8",
                           }}
-                          onClick={(e) => {
+                          onClick={() => {
                             setActive("電繪系列");
                             fetchCategory(pdCtgPage, "電繪系列");
                             navigate('.',{replace:true,state:{page:pdCtgPage,category:"電繪系列"}})
@@ -179,7 +178,7 @@ function Products() {
                             color:
                               active === "明信片系列" ? "#e26d5a" : "#B8B8B8",
                           }}
-                          onClick={(e) => {
+                          onClick={() => {
                             setActive("明信片系列");
                             fetchCategory(pdCtgPage, "明信片系列");
                             navigate('.',{replace:true,state:{page:pdCtgPage,category:"明信片系列"}})
@@ -196,7 +195,7 @@ function Products() {
                             color:
                               active === "手繪系列" ? "#e26d5a" : "#B8B8B8",
                           }}
-                          onClick={(e) => {
+                          onClick={() => {
                             setActive("手繪系列");
                             fetchCategory(pdCtgPage, "手繪系列");
                             navigate('.',{replace:true,state:{page:pdCtgPage,category:"手繪系列"}})
@@ -213,7 +212,7 @@ function Products() {
                             color:
                               active === "水果系列" ? "#e26d5a" : "#B8B8B8",
                           }}
-                          onClick={(e) => {
+                          onClick={() => {
                             setActive("水果系列");
                             fetchCategory(pdCtgPage, "水果系列");
                             navigate('.',{replace:true,state:{page:pdCtgPage,category:"水果系列"}})
@@ -254,7 +253,7 @@ function Products() {
                             color:
                               active === "動物系列" ? "#e26d5a" : "#B8B8B8",
                           }}
-                          onClick={(e) => {
+                          onClick={() => {
                             setActive("動物系列");
                             fetchCategory(pdCtgPage, "動物系列");
                             navigate('.',{replace:true,state:{page:pdCtgPage,category:"動物系列"}})
@@ -271,7 +270,7 @@ function Products() {
                             color:
                               active === "繪本系列" ? "#e26d5a" : "#B8B8B8",
                           }}
-                          onClick={(e) => {
+                          onClick={() => {
                             setActive("繪本系列");
                             fetchCategory(pdCtgPage, "繪本系列");
                             navigate('.',{replace:true,state:{page:pdCtgPage,category:"繪本系列"}})

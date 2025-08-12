@@ -44,7 +44,7 @@ function OrderModal({ mode }) {
     };
 
     try {
-      const res = await axios.put(
+      await axios.put(
         `${import.meta.env.VITE_API_URL}/v2/api/${
           import.meta.env.VITE_API_PATH
         }/admin/order/${order.id}`,
@@ -52,7 +52,7 @@ function OrderModal({ mode }) {
       );
       await fetchOrder();
       navigate(-1);//關閉表單
-    } catch (err) {
+    } catch  {
       alert("系統發生錯誤，請稍後再試");
     }
   };
