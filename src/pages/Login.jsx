@@ -30,7 +30,7 @@ function Login() {
         axios.defaults.headers.common["Authorization"] = token; //更新到全域
         navigate("/dashboard"); //完成登入，連到後台
       }
-    } catch (err) {
+    } catch  {
       setLoginError(false);
     }
   };

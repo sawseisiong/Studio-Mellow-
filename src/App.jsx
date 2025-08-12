@@ -16,6 +16,7 @@ import Checkout from "./pages/front/Checkout";
 import Success from "./pages/front/Success";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import NotFound from "./pages/front/NotFound";
 
 function App() {
   AOS.init(); //初始化 AOS 套件
@@ -32,6 +33,7 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="success" element={<Success />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route
@@ -67,6 +69,7 @@ function App() {
               element={<OrderModal mode="edit" />}
             />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </>

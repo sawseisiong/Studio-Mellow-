@@ -18,7 +18,7 @@ function Dashboard() {
     (async () => {
       try {
         await axios.post(`${import.meta.env.VITE_API_URL}/v2/api/user/check`); //檢查 token 是否正確
-      } catch (err) {
+      } catch  {
         navigate("/login", { replace: true });
       }
     })();

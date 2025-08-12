@@ -48,6 +48,11 @@ a {
     background-image: url("/img/success-phone.png");
     max-width: 100%;
   }
+
+  .bg-404 {
+    background-image: url("/img/404-img.png");
+  }
+
   //navbar 實心白
   .nav-solid {
     background: #fff;
@@ -69,6 +74,10 @@ a {
   //完成結帳畫面橫版背景圖
   .bg-success {
     background-image: url("/img/success.png");
+  }
+
+  .bg-404 {
+    background-image: url("/img/404-img.png");
   }
   .navbar {
     transition: background-color 0.25s ease, box-shadow 0.25s ease;
