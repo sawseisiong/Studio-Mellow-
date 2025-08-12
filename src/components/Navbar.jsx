@@ -9,7 +9,7 @@ function Navbar({ cardData }) {
   //抓到最後一次商品到id，並在點擊 detail 分頁的時候，到該產品分頁
   const location = useLocation();
   const navRef = useRef(null);
-  const [logoColor, setLogoColor] = useState(true);
+
   const [lastProductId, setLastProductId] = useState(() =>
     localStorage.getItem("lastProductId")
   );
@@ -28,11 +28,9 @@ function Navbar({ cardData }) {
       start: 20,
       onEnter: () => {
         nav.classList.add("bg-white");
-        setLogoColor(false);
       },
       onLeaveBack: () => {
         nav.classList.remove("bg-white");
-        setLogoColor(true);
       },
     });
 
@@ -41,7 +39,6 @@ function Navbar({ cardData }) {
 
   const navClickWhite = () => {
     setNavClickColor((pre) => !pre);
-    setLogoColor(false);
   };
 
   return (
@@ -53,24 +50,22 @@ function Navbar({ cardData }) {
         } `}
         style={{
           "--bs-gradient":
-            "linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,0))",
+            "linear-gradient(180deg, rgb(255, 255, 255) 0%,rgb(255, 255, 255, 0.5) 50%,rgb(255, 255, 255, 0.1) 85%, rgba(255,255,255,0) 100%)",
         }}
       >
         <NavLink
           to="/"
           className="navbar-brand hover-float"
-          style={({ isActive }) => ({
-            backgroundImage: isActive
-              ? `url(${import.meta.env.BASE_URL}img/logo-${
-                  logoColor ? "white" : "black"
-                }.png)`
-              : `url(${import.meta.env.BASE_URL}img/logo-black.png)`,
-            height: 60,
+          style={{
+            backgroundImage: `url(${
+              import.meta.env.BASE_URL
+            }img/logo-black.png)`,
+            height: 70,
             width: 150,
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
-          })}
+          }}
         >
           <h1 style={{ position: "absolute", left: "-9999px" }}>
             Studio Mellow
