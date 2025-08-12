@@ -53,7 +53,7 @@ function OrderModal({ mode }) {
       await fetchOrder();
       navigate(-1);//關閉表單
     } catch (err) {
-      console.log(err);
+      alert("系統發生錯誤，請稍後再試");
     }
   };
 

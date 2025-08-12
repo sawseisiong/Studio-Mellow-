@@ -20,7 +20,7 @@ function Cart() {
       );
       getCart(); //重新取得購物車資料
     } catch (err) {
-      console.log(err);
+      alert("系統發生錯誤，請稍後再試");
     }
   };
 
@@ -43,7 +43,7 @@ function Cart() {
       getCart(); //重新取得購物車資料
       setIsLoading(false);
     } catch (err) {
-      console.log(err);
+      alert("系統發生錯誤，請稍後再試");
     }
   };
 

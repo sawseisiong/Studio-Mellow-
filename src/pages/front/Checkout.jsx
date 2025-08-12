@@ -40,7 +40,7 @@ function Checkout() {
       await setCartData({});//完成結帳後清空購物車資料
       navigate("/success", { replace: true });//導到結帳完成頁面
     } catch (err) {
-      console.log(err);
+      alert("系統發生錯誤，請稍後再試");
     }
   };
 
@@ -58,7 +58,7 @@ function Checkout() {
       setOrderList(res.data.data);
       setIsLoading(false)
     } catch (err) {
-      console.log(err);
+      alert("系統發生錯誤，請稍後再試");
     }
   };
 
