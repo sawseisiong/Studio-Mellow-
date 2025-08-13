@@ -45,7 +45,6 @@ function NotFound() {
               minHeight: "100vh",
               right: "0",
               backgroundPosition: "center center",
-              backgroundSize: "contain",
               backgroundSize: "cover",
             }}
           ></div>

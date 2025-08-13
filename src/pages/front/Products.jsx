@@ -74,14 +74,16 @@ function Products() {
             >
               <div className="card border-0">
                 <div className="d-flex justify-content-between align-items-center pe-1 mb-3">
-                  <button
-                    className="btn btn-primary hover-float"
-                    onClick={() => {
-                      fetchCategory(pdCtgPage, "");
-                      setActive("");
-                    }}
-                  >
-                    <h4 className="mb-0 text-white fs-6 ">全部商品</h4>
+                  <button className="btn hover-float">
+                    <h4
+                      className="mb-0 fs-5 "
+                      onClick={() => {
+                        fetchCategory(pdCtgPage, "");
+                        setActive("");
+                      }}
+                    >
+                      全部商品
+                    </h4>
                   </button>
                 </div>
                 <div
@@ -103,7 +105,7 @@ function Products() {
                   aria-labelledby="headingOne"
                   data-bs-parent="#accordionExample"
                 >
-                  <div className="card-body py-0">
+                  <div className="card-body py-0 px-0">
                     <ul className="list-unstyled">
                       <li>
                         <button
@@ -188,7 +190,7 @@ function Products() {
                   aria-labelledby="headingTwo"
                   data-bs-parent="#accordionExample"
                 >
-                  <div className="card-body py-0">
+                  <div className="card-body py-0 px-0">
                     <ul className="list-unstyled">
                       <li>
                         <button
@@ -277,7 +279,7 @@ function Products() {
                   aria-labelledby="headingThree"
                   data-bs-parent="#accordionExample"
                 >
-                  <div className="card-body py-0">
+                  <div className="card-body py-0 px-0">
                     <ul className="list-unstyled">
                       <li>
                         <button
@@ -343,7 +345,7 @@ function Products() {
                       <div className="card border-0 mb-4 position-relative position-relative hover-float">
                         <img
                           src={product.imageUrl || product.imagesUrl?.[0]}
-                          className="card-img-top rounded-0 object-cover "
+                          className="card-img-top rounded-0 object-cover rounded-2"
                           style={{ height: 400 }}
                           alt="產品圖片"
                         />
@@ -356,7 +358,7 @@ function Products() {
                         <div className="card-body p-0">
                           <h4 className="mb-0 mt-3">{product.title}</h4>
                           <p className="card-text mb-0">
-                            {`NT$${product.price.toLocaleString()}`}
+                            {`NT$ ${product.price.toLocaleString()}`}
                           </p>
                           <p className="text-muted mt-3"></p>
                         </div>

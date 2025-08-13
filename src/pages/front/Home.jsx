@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
-  const imgs = ["img/pp4.jpg", "img/pp5.jpg", "img/pp6.jpg"];
+  const imgs = ["img/banner-1.jpg", "img/banner-2.jpg", "img/banner-3.jpg"];
 
   //水果列上的商品動畫
   useEffect(() => {
@@ -104,7 +104,7 @@ function Home() {
                 <div style={{ height: 300 }}>
                   <img
                     src={`${import.meta.env.BASE_URL}img/digiDraw.jpg`}
-                    className="card-img-top rounded-0 w-100 h-100 object-fit-cover shadow hover-float "
+                    className="card-img-top rounded-0 w-100 h-100 object-fit-cover shadow hover-float rounded-2"
                     alt="電繪系列圖片"
                   />
                 </div>
@@ -127,7 +127,7 @@ function Home() {
                 <div style={{ height: 300 }}>
                   <img
                     src={`${import.meta.env.BASE_URL}img/pictureBooks.jpg`}
-                    className="card-img-top rounded-0 w-100 h-100 object-fit-cover shadow hover-float"
+                    className="card-img-top rounded-0 w-100 h-100 object-fit-cover shadow hover-float rounded-2"
                     alt="繪本系列圖片"
                   />
                 </div>
@@ -150,7 +150,7 @@ function Home() {
                 <div style={{ height: 300 }}>
                   <img
                     src={`${import.meta.env.BASE_URL}img/handDrawn.jpg`}
-                    className="card-img-top rounded-0 w-100 h-100 object-fit-cover shadow hover-float"
+                    className="card-img-top rounded-0 w-100 h-100 object-fit-cover shadow hover-float rounded-2"
                     alt="手繪系列圖片"
                   />
                 </div>
@@ -249,41 +249,41 @@ function Home() {
           <Link
             type="button"
             to="/products"
-            className="btn btn-primary btn-lg px-5 hover-float"
-            style={{ color: "#F3F3F3" }}
+            className="btn btn-primary btn-lg me-2 hover-float text-white fs-5"
+            
           >
-            收藏這份溫柔
+            立即欣賞作品
           </Link>
         </div>
         <div className="container my-5 mt-5 ">
           <div className="row">
-            <div className="col-md-6" data-aos="fade-up">
+            <div className="col-md-6 p-0" data-aos="fade-up">
               <img
                 src={`${import.meta.env.BASE_URL}img/hight-paper.png`}
                 alt="紙張質感圖"
-                className="img-fluid"
+                className="img-fluid rounded-2"
                 style={{ height: 400, width: 700, objectFit: "cover" }}
               />
             </div>
-            <div className="col-md-4 m-auto text-center">
-              <h4 className="mt-4">紙，是畫的起點，也是質感的延續。</h4>
+            <div className="col-md-4 m-auto text-center p-0">
+              <h4 className="mt-md-0 mt-3">紙，是畫的起點，也是質感的延續。</h4>
               <p className="text-muted">
                 我們選用溫潤厚實的美術紙，保留筆觸與色彩的細節，
                 讓你收到的不只是插畫，更是一份值得收藏的質感作品。
               </p>
             </div>
           </div>
-          <div className="row flex-row-reverse justify-content-between mt-4">
-            <div className="col-md-6" data-aos="fade-up">
+          <div className="row flex-row-reverse justify-content-between mt-5">
+            <div className="col-md-6 p-0" data-aos="fade-up">
               <img
                 src={`${import.meta.env.BASE_URL}img/pakege.jpg`}
                 alt="紙皮包裝圖"
-                className="img-fluid"
+                className="img-fluid rounded-2"
                 style={{ height: 400, width: 700, objectFit: "cover" }}
               />
             </div>
-            <div className="col-md-4 m-auto text-center">
-              <h4 className="mt-4 ">一份畫，一份心意，包裝不只是保護。</h4>
+            <div className="col-md-4 m-auto text-center p-0">
+              <h4 className="mt-md-0 mt-3">一份畫，一份心意，包裝不只是保護。</h4>
               <p className="text-muted">
                 每一幅畫都經過手工包裝，選用自然質感素材，
                 就像送給重要的人一份溫柔的禮物，安心又有儀式感。

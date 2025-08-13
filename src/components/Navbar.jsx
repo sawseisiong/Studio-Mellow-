@@ -6,21 +6,20 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 function Navbar({ cardData }) {
-  //抓到最後一次商品到id，並在點擊 detail 分頁的時候，到該產品分頁
   const location = useLocation();
   const navRef = useRef(null);
+  const togglerRef = useRef(null);
+  const menuRef = useRef(null);
 
   const [lastProductId, setLastProductId] = useState(() =>
     localStorage.getItem("lastProductId")
   );
-  const [navClickColor, setNavClickColor] = useState(false);
 
   useEffect(() => {
     setLastProductId(localStorage.getItem("lastProductId"));
   }, [location]);
 
   //navbar在滑動往下時變實心白
-
   useEffect(() => {
     const nav = navRef.current;
 
@@ -34,20 +33,44 @@ function Navbar({ cardData }) {
       },
     });
 
-    return () => ScrollTrigger.kill(); // 離開元件時清掉
+    return () => ScrollTrigger.kill();
   }, []);
 
-  const navClickWhite = () => {
-    setNavClickColor((pre) => !pre);
-  };
+  // 點擊外部關閉漢堡菜單
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      // 如果點擊的是 navbar toggler 按鈕，不處理（讓 Bootstrap 自己處理）
+      if (e.target.closest(".navbar-toggler")) {
+        return;
+      }
+
+      // 如果點擊的是 navbar 內部的其他元素，不處理
+      if (navRef.current && navRef.current.contains(e.target)) {
+        return;
+      }
+
+      // 檢查菜單是否打開
+      const isOpen = menuRef.current?.classList.contains("show");
+
+      if (isOpen && togglerRef.current) {
+        // 觸發 Bootstrap 的 collapse 關閉
+        togglerRef.current.click();
+      }
+    };
+
+    // 使用 mousedown 而不是 click，避免與 Bootstrap 的事件衝突
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
       <nav
         ref={navRef}
-        className={`navbar navbar-expand-lg navbar-light pe-md-5 ps-md-5 pe-3 ps-3 fixed-top nav-glass bg-gradient ${
-          navClickColor ? "nav-solid" : ""
-        } `}
+        className="navbar navbar-expand-lg navbar-light pe-md-5 ps-md-5 pe-3 ps-3 fixed-top nav-glass bg-gradient"
         style={{
           "--bs-gradient":
             "linear-gradient(180deg, rgb(255, 255, 255) 0%,rgb(255, 255, 255, 0.5) 50%,rgb(255, 255, 255, 0.1) 85%, rgba(255,255,255,0) 100%)",
@@ -71,55 +94,48 @@ function Navbar({ cardData }) {
             Studio Mellow
           </h1>
         </NavLink>
+
         <button
-          className="navbar-toggler "
+          ref={togglerRef}
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNavAltMarkup"
           aria-controls="navbarNavAltMarkup"
           aria-expanded="false"
           aria-label="Toggle navigation"
-          onClick={navClickWhite}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+
         <div
+          ref={menuRef}
           className="collapse navbar-collapse justify-content-end ms-auto"
           id="navbarNavAltMarkup"
         >
-          <div className="navbar-nav ">
+          <div className="navbar-nav">
             <NavLink
               to=""
               end
               className={({ isActive }) =>
-                `nav-item nav-link me-4 hover-float ${
+                `nav-item nav-link me-5 hover-float ${
                   isActive ? "text-dark" : "text-black-50"
                 }`
               }
             >
-              Home
+              首頁
             </NavLink>
             <NavLink
               to="/products"
               end
               className={({ isActive }) =>
-                `nav-item nav-link me-4 hover-float ${
+                `nav-item nav-link me-5 hover-float ${
                   isActive ? "text-dark" : "text-black-50"
                 }`
               }
             >
-              Product
+              藝術傑作
             </NavLink>
-            {/* <NavLink
-              className={({ isActive }) =>
-                `nav-item nav-link me-4 hover-float ${
-                  isActive ? "text-dark" : "text-black-50"
-                }${!lastProductId ? "disabled" : ""}`
-              }
-              to={lastProductId ? `/products/${lastProductId}` : "#"}
-            >
-              Detail
-            </NavLink> */}
             <NavLink
               className={({ isActive }) =>
                 `nav-item nav-link position-relative hover-float ${
@@ -130,7 +146,10 @@ function Navbar({ cardData }) {
             >
               <i className="bi bi-cart-dash-fill"></i>
               {cardData?.carts?.length ? (
-                <span className="position-absolute top-0 start-15 translate-middle badge rounded-pill bg-danger ">
+                <span
+                  className="position-absolute top-1 start-15 translate-middle badge rounded-pill bg-danger"
+                  style={{ fontSize: "8px" }}
+                >
                   {cardData?.carts?.length}
                   <span className="visually-hidden">unread messages</span>
                 </span>

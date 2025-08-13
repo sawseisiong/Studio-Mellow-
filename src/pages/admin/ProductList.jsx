@@ -1,4 +1,4 @@
-import { Link, useOutletContext, Outlet, useLocation } from "react-router-dom";
+import { Link, useOutletContext, Outlet} from "react-router-dom";
 import useProduct from "./hook/useProduct";
 import { useState } from "react";
 

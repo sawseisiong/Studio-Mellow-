@@ -29,6 +29,7 @@ export default function useFrontProducts(initCategory = "", initPage = 1) {
       setPdPage(res.data.pagination.current_page); //設定當前頁碼
       setPageInfo(res.data.pagination.total_pages); //設定總頁碼數
       const allProduct = res?.data?.products ?? {};
+      allProduct.sort(() => (Math.random() < 0.5 ? -1 : 1)); //打亂產品陣列，讓全部商品分佈隨機
       setProductsData(Object.values(allProduct));
       setIsLoading(false);
     },

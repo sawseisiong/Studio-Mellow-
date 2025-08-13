@@ -84,7 +84,7 @@ function Checkout() {
                       order?.product?.imageUrl || order?.product?.imagesUrl?.[0]
                     }
                     alt="產品圖片"
-                    className="me-2"
+                    className="me-2 rounded-1"
                     style={{
                       width: "48px",
                       height: "48px",
@@ -135,7 +135,7 @@ function Checkout() {
             <p>聯絡資訊 / 收件人資料</p>
             <div className="mb-4">
               <label htmlFor="ContactMail" className="text-muted mb-0">
-                Email
+                電子郵件
               </label>
 
               <input
@@ -158,7 +158,7 @@ function Checkout() {
               )}
             </div>
             <label htmlFor="ContactAddress" className="text-muted mb-0">
-              Shipping address
+              運送地址
             </label>
             <div className="mb-3">
               <input
@@ -173,7 +173,7 @@ function Checkout() {
                     message: "請輸入正確的地址格式",
                   },
                 })}
-                placeholder="請輸入運輸地址"
+                placeholder="請輸入運送地址"
                 className="form-control "
               />
               {errors.address && (
@@ -184,7 +184,7 @@ function Checkout() {
             </div>
             <div className="mb-3">
               <label htmlFor="name" className="text-muted mb-0">
-                Name
+                姓名
               </label>
 
               <input
@@ -211,7 +211,7 @@ function Checkout() {
             </div>
             <div className="mb-3">
               <label htmlFor="ContactPhone" className="text-muted mb-0">
-                Phone
+                電話
               </label>
 
               <input
@@ -236,7 +236,7 @@ function Checkout() {
             </div>
             <div className="mb-4">
               <label htmlFor="ContactMessage" className="text-muted mb-0">
-                Message
+                留言
               </label>
               <textarea
                 className="form-control"
@@ -254,7 +254,10 @@ function Checkout() {
               >
                 <i className="fas fa-chevron-left me-2"></i> 回到上一頁
               </button>
-              <button type="submit" className="btn btn-dark py-1 px-5">
+              <button
+                type="submit"
+                className="btn btn-primary py-1 px-5 text-white"
+              >
                 結帳
               </button>
             </div>
